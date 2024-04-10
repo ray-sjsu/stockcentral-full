@@ -1,4 +1,5 @@
 import Image from 'next/image'
+import Link from 'next/link';
 import React from 'react'
 
 type NewsComponentProps = {
@@ -28,7 +29,7 @@ const NewsComponent = ({
     className="",
 } : NewsComponentProps) => {
   return (
-    <div className={`flex flex-row items-center w-full h-18 rounded bg-slate-400 p-2 text-sl ${className}`}>
+    <Link href={articleUrl} target="_blank" className={`flex flex-row items-center w-full h-18 rounded bg-slate-400 p-2 text-sl ${className}`}>
         <Image
             src={imageUrl}
             width={50}
@@ -49,7 +50,7 @@ const NewsComponent = ({
                 {FormatDate(unixTime, "date")} <br></br> {FormatDate(unixTime, "time")}
             </p>
         </div>
-    </div>
+    </Link>
   )
 }
 

@@ -1,36 +1,28 @@
-import Nav from '@/components/navbar/nav'
-import { getSession, logout, validSession } from '@/utils/authentication'
-import { redirect } from 'next/navigation';
+import LogoutForm from '@/components/login/LogoutForm'
+import SearchMain from '@/components/search/SearchMain'
+import { getSession } from '@/utils/actions'
+import { redirect } from 'next/navigation'
 import React from 'react'
 
-const SettingsPage = async () => {
+const ProfilePage = async () => {
   const session = await getSession()
+
+  console.log('current session:')
+  console.log(session)
+
+  if (!session.isLoggedIn) {
+    redirect("/login")
+  }
+  
   return (
     <main>
       <h1>Profile Page</h1>
-      <div className="mt-10">
-        <h1>Are you logged in?</h1>
-        <p className="text-red-500">
-          {
-            await validSession() ? 'Yes' : 'No'
-          }
-        </p>
-      </div>
-      <form
-          action={async () => {
-            "use server";
-            await logout();
-            redirect("/login");
-          }}
-        >
-          <button type="submit">Logout</button>
-        </form>
-      <h1>Session Info</h1>
-      <pre>{JSON.stringify(await validSession(), null, 2)}</pre>
-      <Nav />
+      <p>Weclome, {session.username}</p>
+      <LogoutForm />
+      <SearchMain />
     </main>
 
   )
 }
 
-export default SettingsPage
+export default ProfilePage

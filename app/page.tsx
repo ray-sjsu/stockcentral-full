@@ -1,8 +1,7 @@
 import React from 'react'
-import Nav from '@/components/navbar/nav'
 import Image from 'next/image'
-import { validSession } from '@/utils/authentication'
 import Link from 'next/link'
+import SearchMain from '@/components/search/SearchMain'
 
 const Home = async () => {
   return (
@@ -20,10 +19,10 @@ const Home = async () => {
       <section className="flex flex-col items-center mt-20 space-y-4">
         <h1 className="text-xl text-center">Chart your Potential</h1>
         <Link className="py-3 px-8 bg-amber-500 cursor-pointer text-2xl rounded-full" href={
-          await validSession() ? '/trade' : '/login'
+          false ? '/trade' : '/login'
         }>
           {
-            await validSession() ? 'Trade' : 'Join'
+            false ? 'Trade' : 'Join'
           }
         </Link>
       </section>
@@ -32,7 +31,6 @@ const Home = async () => {
           The premier destination for seemless trading. Explore stocks and equitites.
         </p>
       </section>
-      <Nav />
     </main>
   )
 }
