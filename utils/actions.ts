@@ -3,6 +3,7 @@ import { getIronSession } from "iron-session"
 import { sessionOptions, SessionData, defaultSession } from "./lib"
 import { cookies } from "next/headers"
 import { redirect } from "next/navigation";
+import { TLoginFormSchema } from "@/lib/types";
 
 
 // test user
@@ -28,26 +29,23 @@ export const getSession = async () => {
 
     return session;
 }
-export const login = async (prevState:{error:undefined | string}, formData: FormData) => {
+export const login = async (LoginFormData: TLoginFormSchema) => {
     const session = await getSession()
 
-    const formUsername = formData.get("username") as string
-    const formPassword = formData.get("password") as string
+    const formUsername = LoginFormData.username
+    const formPassword = LoginFormData.password
 
     // check user in the DB
     // const user = await db.getUser({username, password})
 
     if (formUsername !== username || formPassword !== password) {
-        redirect("/login")
     }
-
     // userID from database
     session.userId = 1
     session.username = formUsername
     session.isLoggedIn = true
 
     await session.save()
-    redirect(redirectPageAfterSuccessfulLogin)
 }
 export const logout = async () => {
     const session = await getSession()
