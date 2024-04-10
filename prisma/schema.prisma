@@ -7,12 +7,21 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model user {
-  userId        Int     @id @unique(map: "sqlite_autoindex_user_1") @default(autoincrement())
-  username      Int     @unique(map: "sqlite_autoindex_user_2")
-  password      Int
-  currentStock  String?
+model UserInfo {
+  userId         Int             @id @unique(map: "sqlite_autoindex_UserInfo_1") @default(autoincrement())
+  username       String          @unique(map: "sqlite_autoindex_UserInfo_2")
+  password       String
+  isLoggedin     Int?
+  lastLoggedin   String?
+  lastAccess     String?
+  lastSearch     String?
+  UserPreference UserPreference?
+}
+
+model UserPreference {
+  userAccount   Int      @unique(map: "sqlite_autoindex_UserPreference_1")
+  selectedStock String?
   searchHistory String?
   favoriteList  String?
-  isLoggedIn    String
+  UserInfo      UserInfo @relation(fields: [userAccount], references: [userId], onDelete: NoAction, onUpdate: NoAction)
 }

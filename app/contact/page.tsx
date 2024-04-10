@@ -17,7 +17,7 @@ const ContactPage = () => {
         <h1 className="font-bold text-4xl">StockCentral</h1>
       </section>
       <h1>btw contact page</h1>
-      <p>Raymund Mercader</p>
+      <p>Last Name first Name</p>
       <Footer />
       <Nav />
     </main>
