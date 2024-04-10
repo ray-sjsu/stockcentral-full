@@ -8,6 +8,8 @@ import { redirect } from "next/navigation";
 // test user
 let username = "test"
 let password = "password"
+let searchHistory = ["AMZN"]
+let favoriteList = ["EBAY"]
 const redirectPageAfterSuccessfulLogin = "/profile"
 const redirectPageAfterSuccessfulLogout = "/login"
 
@@ -16,6 +18,12 @@ export const getSession = async () => {
 
     if (!session.isLoggedIn) {
         session.isLoggedIn = defaultSession.isLoggedIn
+    }
+
+    if (session.isLoggedIn) {
+        // check user in database and update history
+        session.searchHistory = searchHistory
+        session.favoriteList = favoriteList
     }
 
     return session;
@@ -29,8 +37,8 @@ export const login = async (prevState:{error:undefined | string}, formData: Form
     // check user in the DB
     // const user = await db.getUser({username, password})
 
-    if (formUsername !== username && formPassword !== password) {
-        return {error:"Wrong Credentials!"}
+    if (formUsername !== username || formPassword !== password) {
+        redirect("/login")
     }
 
     // userID from database

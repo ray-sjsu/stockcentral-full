@@ -3,8 +3,6 @@
 import { login } from '@/utils/actions'
 import React from 'react'
 import { useFormState } from 'react-dom'
-import { getSession } from '@/utils/actions'
-import { redirect } from 'next/navigation';
 
 const LoginForm = async () => {
   const [state, formAction] = useFormState<any, FormData>(login, undefined)

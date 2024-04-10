@@ -7,7 +7,7 @@ import React from 'react'
 
 
 const TradePage = () => {
-  
+
   return (
     <main className="flex flex-col items-center mt-10">
       <Header />

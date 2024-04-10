@@ -2,6 +2,7 @@ import React from 'react'
 import StockEntry from './SearchStockResult'
 
 const SearchMain = () => {
+
   return (
     <section className="flex flex-col justify-center items-center">
         <div className="flex flex-col justify-center items-center gap-2">
