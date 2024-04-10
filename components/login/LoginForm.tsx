@@ -4,8 +4,6 @@ import React from 'react'
 import { useForm } from "react-hook-form"
 import { zodResolver } from '@hookform/resolvers/zod';
 import { TLoginFormSchema, LoginFormSchema } from '@/lib/types';
-import { redirect } from 'next/navigation';
-import { getSession, login } from '@/utils/actions';
 
 const LoginForm = () => {
   const {
@@ -53,7 +51,13 @@ const LoginForm = () => {
       reset();
       return;
     }
-    alert("success")
+    if (response.ok && responseData.success) {
+      alert("success")
+    }
+    if (response.ok && !responseData.success) {
+      alert("failure, credentials not valid")
+    }
+
 
   }
 

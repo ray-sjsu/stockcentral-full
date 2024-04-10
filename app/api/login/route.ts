@@ -15,6 +15,6 @@ export async function POST(request: Request) {
     return NextResponse.json(
         Object.keys(zodErrors).length > 0 
             ? { errors: zodErrors }
-            : { success: true }
+            : { success: false }
     );
 }
