@@ -3,7 +3,7 @@ import { TbSearch } from "react-icons/tb";
 import { TbMenu2 } from "react-icons/tb";
 import { TbDiamondFilled } from "react-icons/tb";
 import NavIcon from './NavIcon';
-import { getSession } from '@/utils/actions';
+import { getSession } from '@/lib/actions';
 
 const NavBar = async () => {
   const session = await getSession()

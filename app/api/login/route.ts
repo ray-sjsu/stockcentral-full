@@ -1,5 +1,8 @@
-import { verifyLogin } from "@/database";
+"use server";
+
+import { getSession, retrieveLogin } from "@/lib/actions";
 import { LoginFormSchema, TLoginFormSchema } from "@/lib/types";
+import { redirect } from "next/navigation";
 import { NextResponse } from "next/server"
 
 export async function POST(request: Request) {
@@ -14,16 +17,25 @@ export async function POST(request: Request) {
         })
     } else {
         // check DB for existing username and password
-        // set success to false or true if successful login
-
         const LoginFormData : TLoginFormSchema = {
             username: zodResult.data.username,
             password: zodResult.data.password,
         }
-
-        if (await verifyLogin(LoginFormData)) {
+        const dbResult = await retrieveLogin(LoginFormData)
+        if (dbResult !== null) {
             successStatus = true
+
+            // save session
+            const session = await getSession()
+
+            session.userId = dbResult.userId
+            session.username = dbResult.username
+            session.isLoggedIn = true
+
+            await session.save()
         }
+        console.log(`dbResult: ${dbResult?.username}`)
+
     }
 
     return NextResponse.json(

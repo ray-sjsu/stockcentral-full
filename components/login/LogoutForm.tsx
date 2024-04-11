@@ -1,9 +1,9 @@
-import { logout } from '@/utils/actions'
+import { logoutSession } from '@/lib/actions'
 import React from 'react'
 
 const LogoutForm = () => {
   return (
-    <form action={logout}>
+    <form action={logoutSession}>
         <button>logout</button>
     </form>
   )
