@@ -9,10 +9,37 @@ export const LoginFormSchema = z.object({
   })
 export type TLoginFormSchema = z.infer<typeof LoginFormSchema>
 
+export type stockAPIOptions = "currentPrice" | "info" | "charts" | "news" | "all"
 
-export type stockChartInfo = {
-  "label": string[],
-  "data": number[],
+
+export type stockAPINews = {
+  category: string,
+  datetime: number,
+  headline: string,
+  id: number,
+  image: string,
+  source: string,
+  summary: string,
+  url: string
 }
-
-export type stockAPIInfo = "currentPrice" | "info" | "charts" | "news"
+export type stockAPINewsArray = any[]
+export type stockAPIInfo = {
+  '52_week_high': number,
+  '52_week_low': number,
+  'annual_dividend_yield': string,
+  'beta': number,
+  'liquidity_ratio_quarterly': number,
+  'price_to_earning_annual': number,
+}
+export type stockAPIChartEntry = {
+  [key: string]: number
+}
+export type stockAPIChartList = {
+  "income": stockAPIChartEntry | {},
+  "revenue": stockAPIChartEntry | {},
+}
+export type stockChartInfo = {
+  label: string[],
+  data: number[],
+}
+export type stockChartInfoArray = stockChartInfo[]

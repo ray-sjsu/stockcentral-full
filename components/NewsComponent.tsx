@@ -3,12 +3,12 @@ import Link from 'next/link';
 import React from 'react'
 
 type NewsComponentProps = {
-    imageUrl?: string,
-    headline?: string,
-    source?: string,
-    unixTime?: number,
-    articleUrl?: string,
-    className?: string,
+    imageUrl: string,
+    headline: string,
+    source: string,
+    unixTime: number,
+    articleUrl: string,
+    className: string,
 }
 
 const FormatDate = (unix : number, type : "date" | "time") => {
@@ -30,7 +30,7 @@ const NewsComponent = ({
 } : NewsComponentProps) => {
   return (
     <Link href={articleUrl} target="_blank" className={`flex flex-row items-center w-full h-18 rounded bg-slate-400 p-2 text-sl ${className}`}>
-        <Image
+        <img
             src={imageUrl}
             width={50}
             height={50}

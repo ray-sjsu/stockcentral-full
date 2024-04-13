@@ -1,9 +1,6 @@
-import NewsComponent from '@/components/NewsComponent'
-import BarChart from '@/components/charts/BarChart'
 import Header from '@/components/header'
-import Nav from '@/components/navbar/NavBar'
+import NewsList from '@/components/trade/NewsList';
 import React from 'react'
-
 
 
 const TradePage = () => {
@@ -13,12 +10,8 @@ const TradePage = () => {
       <Header />
       <h1 className="mt-10">trade page</h1>
       <div className="flex flex-col w-10/12">
-        <NewsComponent className='my-2'/>
-        <NewsComponent className='my-2'/>
-        <NewsComponent className='my-2'/>
-        <BarChart />
+        <NewsList stock={"AMZN"} />
       </div>
-      <Nav />
     </main>
   )
 }
