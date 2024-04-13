@@ -22,11 +22,50 @@ export const logoutSession = async () => {
     redirect("/login")
 }
 
+export const retrieveStockInfo = async (stockSymbol : string, stockInfo : stockAPIInfo) => {
+    const formData = new FormData()
+    formData.append('stock_symbol', stockSymbol)
+    console.log(formData)
+
+    try {
+      const response = await fetch('http://localhost:5000/stocks', {
+        method: 'POST',
+        body: formData
+      });
+      const data = await response.json()
+      if (!data) {
+        throw new Error(`HTTP error! Status: ${response.status}`);
+    }
+
+    if (stockInfo = "currentPrice") {
+        return data[0]
+    }
+    if (stockInfo = "info") {
+        if (Object.keys(data[1]).length === 0) {
+            return null
+        }
+        return data[1]
+    }
+    if (stockInfo = "charts") {
+        return data[2]
+    }
+    if (stockInfo = "news") {
+        return data[3]
+    }
+    return null
+
+    } catch (error) {
+      console.error('Error fetching data:', error);
+      console.log(`error: ${error}`)
+      return null;
+    }
+  };
+
 
 // database actions
 
 import { PrismaClient } from "@prisma/client";
-import { TLoginFormSchema } from "./types";
+import { TLoginFormSchema, stockAPIInfo } from "./types";
 import { redirect } from "next/navigation";
 const prisma = new PrismaClient()
 

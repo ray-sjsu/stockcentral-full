@@ -8,3 +8,11 @@ export const LoginFormSchema = z.object({
       .min(4, "Password needs a min length of 4 characters"),
   })
 export type TLoginFormSchema = z.infer<typeof LoginFormSchema>
+
+
+export type stockChartInfo = {
+  "label": string[],
+  "data": number[],
+}
+
+export type stockAPIInfo = "currentPrice" | "info" | "charts" | "news"
