@@ -39,7 +39,7 @@ export type stockAPIChartList = {
   "revenue": stockAPIChartEntry | {},
 }
 export type stockChartInfo = {
-  label: string[],
+  labels: string[],
   data: number[],
 }
 export type stockChartInfoArray = stockChartInfo[]
