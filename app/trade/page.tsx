@@ -1,7 +1,7 @@
 import Header from '@/components/header'
-import ChartList from '@/components/trade/ChartList';
-import NewsList from '@/components/trade/NewsList';
-import React from 'react'
+import ChartList from '@/components/trade/charts/ChartList';
+import NewsList from '@/components/trade/news/NewsList';
+import React, { useState } from 'react'
 
 
 const TradePage = () => {

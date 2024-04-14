@@ -1,7 +1,7 @@
 import { retrieveStockInfo } from '@/lib/actions';
 import { stockAPINewsArray } from '@/lib/types';
 import React from 'react'
-import NewsComponent from '../NewsComponent';
+import NewsComponent from './NewsComponent';
 
 type NewsListProps = {
     stock: string

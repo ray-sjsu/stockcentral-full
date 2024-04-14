@@ -40,7 +40,7 @@ const BarChart = ({
         backgroundColor=["rgba(255, 255, 255, 0.2)"]
     } : BarChartProps) => {
 
-    const options = {}
+    const options = {};
     const chartData = {
         labels: labels,
         datasets: [

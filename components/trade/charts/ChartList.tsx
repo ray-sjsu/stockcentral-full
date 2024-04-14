@@ -1,7 +1,7 @@
 import { retrieveStockInfo } from '@/lib/actions';
 import { stockAPIChartList } from '@/lib/types';
 import React from 'react'
-import BarChart from '../charts/BarChart';
+import BarChart from './BarChart';
 
 type ChartListProps = {
     stock: string
