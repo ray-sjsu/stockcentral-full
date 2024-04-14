@@ -1,31 +1,30 @@
-import { retrieveStockInfo } from '@/lib/actions';
 import { stockAPIChartList } from '@/lib/types';
 import React from 'react'
 import BarChart from './BarChart';
 
 type ChartListProps = {
-    stock: string
+    chartData: stockAPIChartList | null
 }
 
-const ChartList = async ({stock}: ChartListProps) => {
-    let APIData: stockAPIChartList = await retrieveStockInfo(stock, "charts")
+const ChartList = ({chartData}: ChartListProps) => {
     let ChartArray = [];
+    if (chartData) {
+        if (Object.values(chartData.income).length > 1) {
+            ChartArray.push({
+                title: "Quarterly Income ($)",
+                labels: Object.keys(chartData.income),
+                data: Object.values(chartData.income)
+            })
+        }
+        if (Object.values(chartData.revenue).length > 1) {
+            ChartArray.push({
+                title: "Quarterly Revenue ($)",
+                labels: Object.keys(chartData.revenue),
+                data: Object.values(chartData.revenue)
+            })
+        }
+    }
 
-    if (Object.values(APIData.income).length > 1) {
-        ChartArray.push({
-            title: "Quarterly Income ($)",
-            labels: Object.keys(APIData.income),
-            data: Object.values(APIData.income)
-        })
-    }
-    if (Object.values(APIData.revenue).length > 1) {
-        ChartArray.push({
-            title: "Quarterly Revenue ($)",
-            labels: Object.keys(APIData.revenue),
-            data: Object.values(APIData.revenue)
-        })
-    }
-    
     return (
         <section className="flex flex-col gap-2">
             {

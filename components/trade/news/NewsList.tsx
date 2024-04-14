@@ -4,12 +4,10 @@ import React from 'react'
 import NewsComponent from './NewsComponent';
 
 type NewsListProps = {
-    stock: string
+    newsData: stockAPINewsArray | null
 }
 
-const NewsList = async ({ stock }: NewsListProps) => {
-    const newsData: stockAPINewsArray = await retrieveStockInfo(stock, "news")
-    console.log(`newsData: ${newsData}`)
+const NewsList = ({ newsData }: NewsListProps) => {
     return (
         <section className="flex flex-col gap-2">
             {

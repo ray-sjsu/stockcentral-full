@@ -22,7 +22,10 @@ export const logoutSession = async () => {
     redirect("/login")
 }
 
-export const retrieveStockInfo = async (stockSymbol : string, stockInfo : stockAPIOptions) => {
+export const retrieveStockInfo = async (stockSymbol : string | null, stockInfo : stockAPIOptions) => {
+    if (!stockSymbol) {
+        return null
+    }
     const formData = new FormData()
     formData.append('stock_symbol', stockSymbol)
     console.log(formData)

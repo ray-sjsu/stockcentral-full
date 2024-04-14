@@ -1,6 +1,7 @@
 import Image from 'next/image'
 import Link from 'next/link';
 import React from 'react'
+import { TbChartAreaFilled } from "react-icons/tb";
 
 type NewsComponentProps = {
     imageUrl: string,
@@ -30,13 +31,21 @@ const NewsComponent = ({
 } : NewsComponentProps) => {
   return (
     <Link href={articleUrl} target="_blank" className={`flex flex-row items-center w-full h-18 rounded bg-slate-400 p-2 text-sl ${className}`}>
-        <img
-            src={imageUrl}
-            width={50}
-            height={50}
-            alt={source}
-            className="mx-2"
-        />
+        {
+            !imageUrl ? (
+                <TbChartAreaFilled height={50} width={50} className="w-50 bg-red-500" />
+            ) : (
+                <img
+                    src={imageUrl}
+                    width={50}
+                    height={50}
+                    alt={source}
+                    className="mx-2"
+                />
+            )
+        }
+        
+
         <div className="flex flex-col truncate text-start justify-self-stretch text-sm grow">
             <h1>
                 {headline}
