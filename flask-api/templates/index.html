@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <title>Stock Price App</title>
+</head>
+
+<body>
+    <div class="container mt-5">
+        <h2>Stock Price App</h2>
+
+        <!-- Form for querying stock by symbol -->
+        <form method="post" class="mt-3">
+            <div class="form-group">
+                <label for="stock_symbol">Stock Symbol:</label>
+                <input type="text" class="form-control" id="stock_symbol" name="stock_symbol" placeholder="Enter Stock Symbol">
+            </div>
+            <button type="submit" class="btn btn-primary">Get Stock Data</button>
+        </form>
+
+        <!-- Display stock data -->
+        {% if stock_data %}
+        <div class="mt-3">
+            <h4>Stock Data:</h4>
+            <ul>
+                <li><strong>Price:</strong> ${{ stock_data[0] }}</li>
+                <li><strong>Details:</strong></li>
+                <ul>
+                    {% for key, value in stock_data[1].items() %}
+                    <li><strong>{{ key }}:</strong> {{ value }}</li>
+                    {% endfor %}
+                </ul>
+            </ul>
+        </div>
+        {% endif %}
+
+        <!-- Message display -->
+        {% if message %}
+        <div class="alert alert-danger mt-3" role="alert">
+            {{ message }}
+        </div>
+        {% endif %}
+    </div>
+</body>
+
+</html> 
