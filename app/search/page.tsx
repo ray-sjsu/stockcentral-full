@@ -1,4 +1,5 @@
 'use client';
+import SearchMain from '@/components/search/SearchMain';
 import { useSearchParams } from 'next/navigation';
 import React, { useState } from 'react'
 
@@ -15,8 +16,10 @@ const SearchPage = () => {
         setIsSearching(true)
         setSearchQuery(query)
         const timer = setTimeout(() => {
-            //
+            // call stocksearch API
+            
             setIsSearching(false)
+            
         }, timeout)
     }
 
@@ -32,6 +35,7 @@ const SearchPage = () => {
                 <p>{`search box search query: ${searchQuery}`}</p>
                 <p>{`isSearching: ${isSearching}`}</p>
                 <button onClick={handleOnClick} className="p-2 bg-slate-600">Search</button>
+                <SearchMain searchArray={null} />
             </section>
         </main>
     )

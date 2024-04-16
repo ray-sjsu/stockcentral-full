@@ -43,3 +43,13 @@ export type stockChartInfo = {
   data: number[],
 }
 export type stockChartInfoArray = stockChartInfo[]
+
+export type stockAPISearchEntry = {
+  description: string,
+  displaySymbol: string,
+  symbol: string,
+  type: string,
+  imageUrl: string,
+}
+
+export type stockAPISearchArray = stockAPISearchEntry[] | null
