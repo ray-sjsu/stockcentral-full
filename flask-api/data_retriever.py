@@ -46,7 +46,7 @@ def get_stock_price(symbol):
     if response.status_code == 200:
         data = response.json()
         current_price = data['c']
-        print(current_price)
+        # print(current_price)
         return current_price
     else:
         print(f"Error: {response.status_code} - {response.text}")
@@ -86,8 +86,8 @@ def get_quarterly_data(symbol):
     else:
         print(f"Error: {response.status_code} - {response.text}")
     quarterly_data = {'revenue': quarter_revenue, 'income': quarter_income}
-    for item in quarterly_data:
-        print(item + ': ' + str(quarterly_data[item]))
+    # for item in quarterly_data:
+    #     print(item + ': ' + str(quarterly_data[item]))
     return quarterly_data
 
 
@@ -120,8 +120,8 @@ def get_basic_financials(symbol):
             if item == 'currentRatioQuarterly':
                 basic_financials['liquidity ratio quarterly'] = bf_report[item]
                 # Higher than 1 indicate better short-term liquidity and financial stability while lower than 1 means company does not have capitol to meet short-term obligations.
-        for item in basic_financials:
-            print(item + ': ' + str(basic_financials[item]))
+        # for item in basic_financials:
+        #     print(item + ': ' + str(basic_financials[item]))
         return basic_financials
     else:
         print(f"Error: {response.status_code} - {response.text}")
@@ -137,11 +137,11 @@ def get_insider_trading():
         raw_data = response.json()
         insider_reports = raw_data.get('data', [])
         i = 0
-        for item in insider_reports:
-            print(item)
-            i += 1
-            if i >= 10:
-                break
+        # for item in insider_reports:
+        #     print(item)
+        #     i += 1
+        #     if i >= 10:
+        #         break
     # labels that might be useful:
     # Income Statement: Revenue, Expenses, Net income, Total operating expenses
     # Balance Sheet: Assets, Total liabilities, Total stockholders' equity
@@ -161,8 +161,8 @@ def get_news(symbol):
     raw_data = response.json()
     if response.status_code == 200:
         data = raw_data[:5]
-        for item in data[:5]:
-            print(item)
+        # for item in data[:5]:
+        #     print(item)
         return data[:5]
 
 def get_logo(symbol):
@@ -183,8 +183,8 @@ def symbol_lookup(input):
         raw_data = response.json()
         data = raw_data['result']
         filtered_data = [d for d in data if d.get('type') != '' and '.' not in d.get('symbol')][:5]
-        for x in filtered_data:
-            print(x)
+        # for x in filtered_data:
+        #     print(x)
         return filtered_data
     return
 def get_stock_data(symbol):
