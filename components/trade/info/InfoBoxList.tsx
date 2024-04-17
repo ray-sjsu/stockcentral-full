@@ -12,7 +12,7 @@ const InfoBoxList = ({ otherInfo } : InfoBoxListProps) => {
         {otherInfo ? (
             Object.entries(otherInfo).map(([key, value]) => (
                 <div key={value}>
-                    <strong>{key}: </strong> {value}
+                    <InfoBox title={key} value={value} />
                 </div>
             ))
         ) : (

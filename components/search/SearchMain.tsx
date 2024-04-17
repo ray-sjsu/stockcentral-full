@@ -14,11 +14,12 @@ const SearchMain = ({
   return (
       <section className="flex flex-col justify-center items-center gap-2 w-full mt-2">
           {
-            !searchArray ? (
-              <div className="w-full flex flex-col gap-2">
-                <StockEntry />
-                <StockEntry />
-              </div>
+            searchArray ? (
+              searchArray.map((entry, index) => (
+                <div key={index}>
+                    <StockEntry description={entry.description} displaySymbol={entry.displaySymbol} symbol={''} type={''} imageUrl={entry.imageUrl} />
+                </div>
+            ))
             ) : <h1>No relevant Stock Symbols</h1>
           }
       </section>
