@@ -188,12 +188,14 @@ def symbol_lookup(input):
         return filtered_data
     return
 def get_stock_data(symbol):
-    return get_stock_price(symbol), get_basic_financials(symbol), get_quarterly_data(symbol), get_news(symbol)
+    return get_stock_price(symbol), get_basic_financials(symbol), get_quarterly_data(symbol), get_news(symbol), symbol_lookup(symbol)
 
-test_symbol = 'MSFT'
-get_stock_price(test_symbol)
-get_basic_financials(test_symbol)
-get_quarterly_data(test_symbol)
-get_news(test_symbol)
-get_logo(test_symbol)
-symbol_lookup(test_symbol)
+def test():
+    test_symbol = 'APPL'
+    get_stock_price(test_symbol)
+    get_basic_financials(test_symbol)
+    get_quarterly_data(test_symbol)
+    get_news(test_symbol)
+    get_logo(test_symbol)
+    symbol_lookup(test_symbol)
+
