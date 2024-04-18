@@ -193,7 +193,7 @@ def symbol_lookup(input):
     return
 def get_stock_data(symbol):
     if (symbol == None or symbol == ''): return
-    return get_stock_price(symbol), get_basic_financials(symbol), get_quarterly_data(symbol), get_news(symbol), symbol_lookup(symbol)[0]
+    return get_stock_price(symbol), get_basic_financials(symbol), get_quarterly_data(symbol), get_news(symbol), [symbol_lookup(symbol)[0]]
 
 # Testing
 def test():
