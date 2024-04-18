@@ -18,6 +18,7 @@ const RootLayout = ({children}: Readonly<{children: React.ReactNode;}>) => {
       <body className={inter.className}>
         {children}
         <Nav />
+        <div className="w-full m-[10%]"></div>
       </body>
     </html>
   )

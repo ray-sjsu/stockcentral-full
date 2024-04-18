@@ -1,41 +1,60 @@
 'use client';
 import SearchMain from '@/components/search/SearchMain';
+import { retrieveStockSearchList } from '@/lib/actions';
 import { useSearchParams } from 'next/navigation';
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 
 
 const SearchPage = () => {
     const [searchQuery, setSearchQuery] = useState("")
-    const [isSearching, setIsSearching] = useState(false)
+    const [searchResults, setSearchResults] = useState([])
+    const [submitted, setSubmitted] = useState(false)
 
     const searchParams = useSearchParams()
     const stock = searchParams.get("stock")
-    const timeout = 5 * 1000;
+
+    useEffect(() => {
+        const retrieveSearchData = async () => {
+            const stockSearchArray = await retrieveStockSearchList(searchQuery)
+            setSearchResults(stockSearchArray)
+            setSubmitted(false)
+        }
+        if (submitted) {
+            retrieveSearchData()
+        }
+    }, [submitted])
+    
 
     const handleSearch = (query : string) => {
-        setIsSearching(true)
         setSearchQuery(query)
-        const timer = setTimeout(() => {
-            // call stocksearch API
-            
-            setIsSearching(false)
-            
-        }, timeout)
     }
 
     const handleOnClick = () => {
+        setSubmitted(true)
     }
 
     return (
         <main className="flex flex-col items-center">
             <section>
                 <h1>Search Page</h1>
-                <input type="text" onChange={e => handleSearch(e.target.value)} placeholder="Company Name or Stock" className='text-red-500' />
-                <p>{`stock param: ${stock}`}</p>
-                <p>{`search box search query: ${searchQuery}`}</p>
-                <p>{`isSearching: ${isSearching}`}</p>
+                <input type="text" onChange={e => handleSearch(e.target.value)} placeholder="Stock Symbol" className='text-red-500' />
                 <button onClick={handleOnClick} className="p-2 bg-slate-600">Search</button>
-                <SearchMain searchArray={null} />
+            </section>
+            <div className='flex flex-col gap-2'>
+                <p>{`search box search query: ${searchQuery}`}</p>
+                <p>{`is submitted: ${submitted}`}</p>
+            </div>
+            <hr className="border w-full"></hr>
+            <section className="flex flex-col gap-2">
+                <h1>Results</h1>
+                {
+                    searchResults.length > 0 ? (
+                        <SearchMain searchArray={searchResults} />
+                    )
+                    : (
+                        <h1>No valid results</h1>
+                    )
+                }
             </section>
         </main>
     )

@@ -17,7 +17,7 @@ const SearchMain = ({
             searchArray ? (
               searchArray.map((entry, index) => (
                 <div key={index}>
-                    <StockEntry description={entry.description} displaySymbol={entry.displaySymbol} symbol={''} type={''} imageUrl={entry.imageUrl} />
+                    <StockEntry description={entry.description} displaySymbol={entry.displaySymbol} symbol={''} type={''} image={entry.image} />
                 </div>
             ))
             ) : <h1>No relevant Stock Symbols</h1>

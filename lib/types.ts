@@ -9,8 +9,7 @@ export const LoginFormSchema = z.object({
   })
 export type TLoginFormSchema = z.infer<typeof LoginFormSchema>
 
-export type stockAPIOptions = "currentPrice" | "info" | "charts" | "news" | "all"
-
+export type stockAPIOptions = "all"
 
 export type stockAPINews = {
   category: string,
@@ -49,7 +48,7 @@ export type stockAPISearchEntry = {
   displaySymbol: string,
   symbol: string,
   type: string,
-  imageUrl: string,
+  image: string,
 }
 
 export type stockAPISearchArray = stockAPISearchEntry[] | null

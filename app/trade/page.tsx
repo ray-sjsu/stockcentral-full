@@ -31,7 +31,7 @@ const TradePage = () => {
 
   return (
     <main className="flex flex-col items-center mt-10">
-      <Header stockSymbol={stockQuery} />
+      <Header stockSymbol={stockData[-1]} />
       <h1 className="mt-10">trade page</h1>
       <h1>{`is loading: ${APIStatus}`}</h1>
       <div className="flex flex-col w-10/12">
