@@ -7,7 +7,7 @@ CORS(app)
 @app.route('/stocks', methods=['GET', 'POST'])
 def index():
     stock_data = None
-    print('request.form: ' + str(request.form))
+    print('/stocks route: ' + str(request.form))
 
     if request.method == 'POST':
         if 'stock_symbol' in request.form:
@@ -20,11 +20,11 @@ def index():
 @app.route('/search', methods=['GET', 'POST'])
 def index1():
     stock_data = None
-    print('request.form: ' + str(request.form))
+    print('/search route: ' + str(request.form))
 
     if request.method == 'POST':
-        if 'stock_search' in request.form:
-            stock_symbol = request.form['stock_search']
+        if 'stock_symbol' in request.form:
+            stock_symbol = request.form['stock_symbol']
             stock_data = dr.symbol_lookup(stock_symbol)
             if stock_data:
                 return jsonify(stock_data)
