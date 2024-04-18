@@ -166,6 +166,7 @@ def get_news(symbol):
         return data[:5]
 
 def get_logo(symbol):
+    if (symbol == None): return
     endpoint = 'stock/profile2?'
     query = 'symbol={}&token={}'.format(symbol, api_key)
     response = requests.get(base_url + endpoint + query)
@@ -182,7 +183,10 @@ def symbol_lookup(input):
     if response.status_code == 200:
         raw_data = response.json()
         data = raw_data['result']
-        filtered_data = [d for d in data if d.get('type') != '' and '.' not in d.get('symbol')][:5]
+        filtered_data = [
+            {**d, 'image': get_logo(d.get('displaySymbol', None))}
+            for d in data if d.get('type') != '' and '.' not in d.get('symbol')
+        ][:5]
         # for x in filtered_data:
         #     print(x)
         return filtered_data
@@ -190,6 +194,7 @@ def symbol_lookup(input):
 def get_stock_data(symbol):
     return get_stock_price(symbol), get_basic_financials(symbol), get_quarterly_data(symbol), get_news(symbol), symbol_lookup(symbol)
 
+# Testing
 def test():
     test_symbol = 'APPL'
     get_stock_price(test_symbol)
