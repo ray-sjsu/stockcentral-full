@@ -3,7 +3,7 @@
 import React from 'react'
 import { useForm } from "react-hook-form"
 import { zodResolver } from '@hookform/resolvers/zod';
-import { TLoginFormSchema, LoginFormSchema } from '@/lib/types';
+import { TLoginFormSchema, LoginFormSchema } from '@/lib/types/types';
 import { redirectSession } from '@/lib/actions';
 
 const LoginForm = () => {

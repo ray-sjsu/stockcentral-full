@@ -16,7 +16,7 @@ const ProfilePage = async () => {
       <h1>Profile Page</h1>
       <p>Weclome, {session.username}</p>
       <LogoutForm />
-      <SearchMain />
+      <SearchMain searchArray={null} />
     </main>
 
   )

@@ -1,4 +1,4 @@
-import { stockAPIInfo } from '@/lib/types'
+import { stockAPIInfo } from '@/lib/types/types'
 import React from 'react'
 import InfoBox from './InfoBox'
 

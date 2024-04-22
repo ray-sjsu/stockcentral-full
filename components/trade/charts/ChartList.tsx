@@ -1,4 +1,4 @@
-import { stockAPIChartList } from '@/lib/types';
+import { stockAPIChartList } from '@/lib/types/types';
 import React from 'react'
 import BarChart from './BarChart';
 

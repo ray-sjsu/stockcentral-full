@@ -1,5 +1,5 @@
 import { retrieveStockInfo } from '@/lib/actions';
-import { stockAPINewsArray } from '@/lib/types';
+import { stockAPINewsArray } from '@/lib/types/types';
 import React from 'react'
 import NewsComponent from './NewsComponent';
 

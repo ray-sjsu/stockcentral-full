@@ -1,6 +1,6 @@
 import React from 'react'
 import Link from 'next/link'
-import { stockAPISearchEntry } from '@/lib/types'
+import { stockAPISearchEntry } from '@/lib/types/types'
 import { FaRegBuilding } from "react-icons/fa";
 
 
