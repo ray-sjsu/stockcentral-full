@@ -11,14 +11,19 @@ export const metadata: Metadata = {
 
 import React from 'react'
 import Nav from "@/components/navbar/NavBar";
+import ClientProvider from "@/components/ClientProvider";
 
 const RootLayout = ({children}: Readonly<{children: React.ReactNode;}>) => {
   return (
     <html lang="en">
       <body className={inter.className}>
-        {children}
-        <Nav />
-        <div className="w-full m-[10%]"></div>
+        <ClientProvider>
+          <main>
+            {children}
+            <Nav />
+            <div className="w-full m-[10%]"></div>
+          </main>
+        </ClientProvider>
       </body>
     </html>
   )
