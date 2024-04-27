@@ -6,7 +6,7 @@
   "scripts": {
     "flask-dev": "cd flask-api && python -m venv venv && pip install -r requirements.txt && set FLASK_APP=app.py && set FLASK_ENV=development && set FLASK_DEBUG=1 && python -m flask run",
     "next-dev": "npm install && next dev",
-    "dev": "concurrently \"npm run next-dev\" \"npm run flask-dev\"",
+    "db": "npx prisma studio",
     "build": "next build",
     "start": "next start",
     "lint": "next lint"

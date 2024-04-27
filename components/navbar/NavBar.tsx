@@ -13,7 +13,7 @@ const NavBar = async () => {
       <div className="flex flex-row flex-nowrap items-center justify-around h-full w-full grow">
         <NavIcon href="/search" className="h-1/2" iconElement={<TbSearch className="size-full"/>} />
         <NavIcon href="/trade" className="h-4/6" iconElement={<TbDiamondFilled className="size-full"/>} />
-        <NavIcon href={ false ? "/profile" : "/login" } className="h-4/6" iconElement={<TbMenu2 className="size-full"/>} />
+        <NavIcon href={ true ? "/sign-in" : "/profile" } className="h-4/6" iconElement={<TbMenu2 className="size-full"/>} />
       </div>
     </nav>
   )
