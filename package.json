@@ -3,7 +3,9 @@
   "version": "0.1.0",
   "private": true,
   "proxy": "http://localhost:5000",
+  "homepage": "https://ray-sjsu.github.io/stockcentral-full",
   "scripts": {
+    "deploy": "gh-pages -d build",
     "flask-dev": "cd flask-api && python -m venv venv && pip install -r requirements.txt && set FLASK_APP=app.py && set FLASK_ENV=development && set FLASK_DEBUG=1 && python -m flask run",
     "next-dev": "npm install && next dev",
     "db": "npx prisma studio",
@@ -38,6 +40,7 @@
     "autoprefixer": "^10.0.1",
     "eslint": "^8",
     "eslint-config-next": "14.1.4",
+    "gh-pages": "^6.1.1",
     "postcss": "^8",
     "prisma": "^5.12.1",
     "tailwindcss": "^3.3.0",
