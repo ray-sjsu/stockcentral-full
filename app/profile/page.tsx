@@ -1,22 +1,23 @@
 import LogoutForm from '@/components/login/LogoutForm'
 import SearchMain from '@/components/search/SearchMain'
-import { getSession } from '@/lib/actions'
+import { authOptions } from '@/lib/auth'
+import { getServerSession } from 'next-auth'
 import { redirect } from 'next/navigation'
 import React from 'react'
 
 const ProfilePage = async () => {
-  const session = await getSession()
+  const session = await getServerSession(authOptions);
 
-  if (!session.isLoggedIn) {
-    redirect("/login")
+  if (!session?.user) {
+    redirect("/sign-in")
   }
 
   return (
     <main>
       <h1>Profile Page</h1>
-      <p>Weclome, {session.username}</p>
+      <p>Welcome, {session.user.name}</p>
       <LogoutForm />
-      <SearchMain />
+      <SearchMain searchArray={null} />
     </main>
 
   )

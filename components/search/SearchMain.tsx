@@ -1,6 +1,6 @@
 import React from 'react'
 import StockEntry from './SearchStockResult'
-import { stockAPISearchArray } from '@/lib/types'
+import { stockAPISearchArray } from '@/lib/types/types'
 
 
 type SearchMainProps = {
