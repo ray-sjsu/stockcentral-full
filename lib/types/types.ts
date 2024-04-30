@@ -1,13 +1,33 @@
 import { z } from 'zod';
 
-export const LoginFormSchema = z.object({
-    username: z.string()
-      .min(2, "Username needs a min length of 2 characters")
-      .max(10, "Username needs a max length of 10 characters"),
-    password: z.string()
-      .min(4, "Password needs a min length of 4 characters"),
+export const SignInFormSchema = z.object({
+  email: z.string().min(1, "Email is required").email("Invalid email"),
+  password: z
+    .string()
+    .min(1, "Password is required")
+    .min(8, "Password must have than 8 characters"),
+});
+export type TSignInFormSchema = z.infer<typeof SignInFormSchema>
+
+export const SignUpFormSchema = z
+  .object({
+    username: z.string().min(1, "Username is required").max(100),
+    email: z.string().min(1, "Email is required").email("Invalid email"),
+    password: z
+      .string()
+      .min(1, "Password is required")
+      .min(8, "Password must have than 8 characters"),
+    confirmPassword: z.string().min(1, "Password confirmation is required"),
   })
-export type TLoginFormSchema = z.infer<typeof LoginFormSchema>
+  .refine((data) => data.password === data.confirmPassword, {
+    path: ["confirmPassword"],
+    message: "Password do not match",
+  });
+
+export type TSignUpFormSchema = z.infer<typeof SignUpFormSchema>
+
+
+
 
 export type stockAPIOptions = "all"
 

@@ -11,7 +11,7 @@ type APIStatusType = 'idle' | 'loading' | 'success' | 'error';
 
 const TradePageContent = () => {
   const searchParams = useSearchParams()
-  const stockQuery = searchParams.get("stock") ?? 'AMZN'
+  const stockQuery = searchParams.get("stock")
   const [stockData, setStockData] = useState([])
   const [APIStatus, setAPIStatus] = useState<APIStatusType>('idle')
 

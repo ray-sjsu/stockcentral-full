@@ -1,30 +1,17 @@
 "use client";
 
 import { useForm } from "react-hook-form";
-import * as z from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
+import { SignUpFormSchema, TSignUpFormSchema } from "@/lib/types/types";
 
-const FormSchema = z
-  .object({
-    username: z.string().min(1, "Username is required").max(100),
-    email: z.string().min(1, "Email is required").email("Invalid email"),
-    password: z
-      .string()
-      .min(1, "Password is required")
-      .min(8, "Password must have than 8 characters"),
-    confirmPassword: z.string().min(1, "Password confirmation is required"),
-  })
-  .refine((data) => data.password === data.confirmPassword, {
-    path: ["confirmPassword"],
-    message: "Password do not match",
-  });
+
 
 const SignUpForm = () => {
   const router = useRouter();
-  const form = useForm<z.infer<typeof FormSchema>>({
-    resolver: zodResolver(FormSchema),
+  const form = useForm<TSignUpFormSchema>({
+    resolver: zodResolver(SignUpFormSchema),
     defaultValues: {
       username: "",
       email: "",
@@ -33,7 +20,7 @@ const SignUpForm = () => {
     },
   });
 
-  const onSubmit = async (values: z.infer<typeof FormSchema>) => {
+  const onSubmit = async (values: TSignUpFormSchema) => {
     const response = await fetch("/api/user", {
       method: "POST",
       headers: {
@@ -76,7 +63,7 @@ const SignUpForm = () => {
           {...form.register("confirmPassword")}
         />
         <button type="submit">Sign Up</button>
-        {form.formState.errors ? <h1>There is an error</h1> : null}
+        {form.formState.errors ? <h1>{form.formState.errors.username?.message}</h1> : null}
         {form.formState.isSubmitting ? (
           <h1>Currently submitting</h1>
         ) : (
