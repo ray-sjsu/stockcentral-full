@@ -2,10 +2,17 @@ import React from 'react'
 import Nav from '@/components/navbar/NavBar'
 import Image from 'next/image'
 import Footer from '@/components/footer'
+import { authOptions } from '@/lib/auth'
+import { getServerSession } from 'next-auth'
 
-const ContactPage = () => {
+const ContactPage = async () => {
+  const session = await getServerSession(authOptions)
+
   return (
-    <main className="flex flex-col items-center justify-center">
+    <section className="flex flex-col items-center justify-center">
+      {
+        session?.user ? <h1>Hello, {session.user.name}</h1> : null
+      }
       <section className="flex flex-col items-center mt-10">
         <Image
           src="/stockcentral-logo.png"
@@ -20,7 +27,7 @@ const ContactPage = () => {
       <p>Last Name first Name</p>
       <Footer />
       <Nav />
-    </main>
+    </section>
   )
 }
 
