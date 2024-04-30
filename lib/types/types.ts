@@ -24,9 +24,18 @@ export const SignUpFormSchema = z
     message: "Password do not match",
   });
 
+
 export type TSignUpFormSchema = z.infer<typeof SignUpFormSchema>
 
-
+// Define schema for server-side input validation (/api/user)
+export const UserCreationSchema = z.object({
+  username: z.string().min(1, "Username is required").max(100),
+  email: z.string().min(1, "Email is required").email("Invalid email"),
+  password: z
+    .string()
+    .min(1, "Password is required")
+    .min(8, "Password must have than 8 characters"),
+});
 
 
 export type stockAPIOptions = "all"

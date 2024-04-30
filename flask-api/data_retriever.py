@@ -165,6 +165,17 @@ def get_news(symbol):
         #     print(item)
         return data[:5]
 
+def get_company(symbol):
+    if (symbol == None or symbol == ''): return
+    endpoint = 'stock/profile2?'
+    query = 'symbol={}&token={}'.format(symbol, api_key)
+    response = requests.get(base_url + endpoint + query)
+    if response.status_code == 200:
+        raw_data = response.json()
+        if raw_data != {} or raw_data == None:
+            return raw_data
+    return
+
 def get_logo(symbol):
     if (symbol == None or symbol == ''): return
     endpoint = 'stock/profile2?'
@@ -176,6 +187,7 @@ def get_logo(symbol):
             print(raw_data['logo'])
             return raw_data['logo']
     return
+
 def symbol_lookup(input):
     endpoint = 'search?'
     query = 'q={}&token={}'.format(input, api_key)
@@ -184,16 +196,41 @@ def symbol_lookup(input):
         raw_data = response.json()
         data = raw_data['result']
         filtered_data = [
-            {**d, 'image': get_logo(d.get('displaySymbol', None))}
-            for d in data if d.get('type') != '' and '.' not in d.get('symbol')
+            d for d in data if d.get('type') != '' and '.' not in d.get('symbol')
         ][:5]
-        # for x in filtered_data:
-        #     print(x)
+        for d in filtered_data:
+            d['image'] = get_logo(d.get('displaySymbol', None))
+
+        #for x in filtered_data:
+             #print(x)
         return filtered_data
     return
+
+def get_recommendation(symbol):
+    endpoint = 'stock/recommendation?'
+    query = 'symbol={}&token={}'.format(symbol, api_key)
+    response = requests.get(base_url + endpoint + query)
+    print(base_url + endpoint + query)
+    if response.status_code == 200:
+        raw_data = response.json()
+        print(raw_data)
+        return raw_data
+    return
+
+def get_market_status():
+    endpoint = 'stock/market-status?'
+    query = 'exchange=US&token={}'.format(api_key)
+    response = requests.get(base_url + endpoint + query)
+    print(base_url + endpoint + query)
+    if response.status_code == 200:
+        raw_data = response.json()
+        print(raw_data)
+        return raw_data
+    return
+
 def get_stock_data(symbol):
     if (symbol == None or symbol == ''): return
-    return get_stock_price(symbol), get_basic_financials(symbol), get_quarterly_data(symbol), get_news(symbol), [symbol_lookup(symbol)[0]]
+    return get_stock_price(symbol), get_basic_financials(symbol), get_quarterly_data(symbol), get_news(symbol), [symbol_lookup(symbol)[0]], get_recommendation(symbol)
 
 # Testing
 def test():
@@ -204,4 +241,4 @@ def test():
     get_news(test_symbol)
     get_logo(test_symbol)
     symbol_lookup(test_symbol)
-
+    get_recommendation(test_symbol)

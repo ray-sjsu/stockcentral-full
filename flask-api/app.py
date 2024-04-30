@@ -30,6 +30,29 @@ def index1():
                 return jsonify(stock_data)
     return jsonify(stock_data)
 
+@app.route('/company', methods=['GET', 'POST'])
+def index2():
+    stock_data = None
+    print('/company: ' + str(request.form))
+
+    if request.method == 'POST':
+        if 'stock_symbol' in request.form:
+            stock_symbol = request.form['stock_symbol']
+            stock_data = dr.get_company(stock_symbol)
+            if stock_data:
+                return jsonify(stock_data)
+    return jsonify(stock_data)
+
+@app.route('/market', methods=['GET', 'POST'])
+def index3():
+    stock_data = None
+    print('/market: ' + str(request.form))
+    
+    if request.method == 'POST':
+        stock_data = dr.get_market_status()
+        if stock_data:
+            return jsonify(stock_data)
+    return jsonify(stock_data)
 
 if __name__ == '__main__':
     app.run(debug=True)
