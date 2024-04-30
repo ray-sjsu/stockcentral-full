@@ -51,3 +51,4 @@ flask-api/__pycache__/*.pyc
 *.py[cod]
 *$py.class
 *.pyc
+/flask-api/__pycache__
