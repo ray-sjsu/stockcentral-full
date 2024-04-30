@@ -43,5 +43,16 @@ def index2():
                 return jsonify(stock_data)
     return jsonify(stock_data)
 
+@app.route('/market', methods=['GET', 'POST'])
+def index3():
+    stock_data = None
+    print('/market: ' + str(request.form))
+    
+    if request.method == 'POST':
+        stock_data = dr.get_market_status()
+        if stock_data:
+            return jsonify(stock_data)
+    return jsonify(stock_data)
+
 if __name__ == '__main__':
     app.run(debug=True)

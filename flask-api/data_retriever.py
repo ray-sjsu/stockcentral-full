@@ -217,6 +217,17 @@ def get_recommendation(symbol):
         return raw_data
     return
 
+def get_market_status():
+    endpoint = 'stock/market-status?'
+    query = 'exchange=US&token={}'.format(api_key)
+    response = requests.get(base_url + endpoint + query)
+    print(base_url + endpoint + query)
+    if response.status_code == 200:
+        raw_data = response.json()
+        print(raw_data)
+        return raw_data
+    return
+
 def get_stock_data(symbol):
     if (symbol == None or symbol == ''): return
     return get_stock_price(symbol), get_basic_financials(symbol), get_quarterly_data(symbol), get_news(symbol), [symbol_lookup(symbol)[0]], get_recommendation(symbol)
