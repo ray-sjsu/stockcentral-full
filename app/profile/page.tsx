@@ -1,5 +1,4 @@
-import LogoutForm from '@/components/login/LogoutForm'
-import SearchMain from '@/components/search/SearchMain'
+import SignOutButton from '@/components/forms/SignOutButton'
 import { authOptions } from '@/lib/auth'
 import { getServerSession } from 'next-auth'
 import { redirect } from 'next/navigation'
@@ -16,8 +15,7 @@ const ProfilePage = async () => {
     <main>
       <h1>Profile Page</h1>
       <p>Welcome, {session.user.name}</p>
-      <LogoutForm />
-      <SearchMain searchArray={null} />
+      <SignOutButton />
     </main>
 
   )

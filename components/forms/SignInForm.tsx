@@ -35,7 +35,7 @@ const SignInForm = () => {
       // add error handling (toast?)
     } else {
       router.refresh();
-      router.push("/admin");
+      router.push("/profile");
     }
   };
 
