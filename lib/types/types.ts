@@ -72,3 +72,19 @@ export type stockAPISearchEntry = {
 }
 
 export type stockAPISearchArray = stockAPISearchEntry[] | null
+
+export type stockAPICompanyProfile = {
+  country: string,
+  currency: string,
+  estimateCurrency: string,
+  exchange: string,
+  finnhubIndustry: string,
+  ipo: string,
+  logo: string,
+  marketCapitalization: number,
+  name: string,
+  phone: string,
+  shareOutstanding: number,
+  ticker: string,
+  weburl: string
+}
