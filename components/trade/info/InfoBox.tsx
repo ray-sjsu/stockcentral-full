@@ -5,6 +5,7 @@ import { FiArrowUpCircle, FiArrowDownCircle } from 'react-icons/fi';
 import { IoIosWater } from 'react-icons/io';
 import { TbInfoCircle } from "react-icons/tb";
 import { IoCash } from "react-icons/io5";
+import { MdAttachMoney } from "react-icons/md";
 
 type InfoBoxProps = {
     iconElement?: React.ReactNode,
@@ -12,15 +13,18 @@ type InfoBoxProps = {
     value?: string | number,
 }
 
+const iconClassStyles = "aspect-square size-36"
+
 const MapKeyToIcon = {
-  '52 week high': <FiArrowUpCircle className="size-full" />,
-  '52 week low': <FiArrowDownCircle className="size-full" />,
-  'annual dividend yield': <FaMoneyBillAlt className="size-full" />,
-  'beta': <BiTrendingUp className="size-full" />,
-  'annual net profit margin': <IoCash className="size-full" />,
-  'liquidity ratio quarterly': <IoIosWater className="size-full" />,
-  'price to earning annual': <BiMoney className="size-full" />,
-  'default': <TbInfoCircle className="size-full" />
+  'current price': <MdAttachMoney className={`${iconClassStyles}`} />,
+  '52 week high': <FiArrowUpCircle className={`${iconClassStyles}`} />,
+  '52 week low': <FiArrowDownCircle className={`${iconClassStyles}`} />,
+  'annual dividend yield': <FaMoneyBillAlt className={`${iconClassStyles}`} />,
+  'beta': <BiTrendingUp className={`${iconClassStyles}`} />,
+  'annual net profit margin': <IoCash className={`${iconClassStyles}`} />,
+  'liquidity ratio quarterly': <IoIosWater className={`${iconClassStyles}`} />,
+  'price to earning annual': <BiMoney className={`${iconClassStyles}`} />,
+  'default': <TbInfoCircle className={`${iconClassStyles}`} />
 }
 
 const InfoBox = ({
