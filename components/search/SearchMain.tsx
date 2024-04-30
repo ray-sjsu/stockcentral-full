@@ -16,11 +16,11 @@ const SearchMain = ({
           {
             searchArray ? (
               searchArray.map((entry, index) => (
-                <div key={index}>
+                <div key={index} className="w-full gap-2">
                     <StockEntry description={entry.description} displaySymbol={entry.displaySymbol} symbol={''} type={''} image={entry.image} />
                 </div>
             ))
-            ) : <h1>No relevant Stock Symbols</h1>
+            ) : null
           }
       </section>
   )

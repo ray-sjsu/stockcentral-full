@@ -2,29 +2,7 @@
 
 // api calls
 
-import { sessionOptions, SessionData, defaultSession } from "@/lib/lib"
-import { getIronSession } from "iron-session"
-import { cookies } from "next/headers"
-import { redirect } from "next/navigation";
 import { stockAPIOptions } from "./types/types";
-
-export const getSession = async () => {
-    const session = await getIronSession<SessionData>(cookies(), sessionOptions)
-
-    if (!session.isLoggedIn) {
-        session.isLoggedIn = defaultSession.isLoggedIn
-    }
-
-    return session;
-}
-export const redirectSession = (url : string) => {
-    redirect(url)
-}
-export const logoutSession = async () => {
-    const session = await getSession()
-    session.destroy()
-    redirect("/login")
-}
 
 export const retrieveStockInfo = async (stockSymbol : string | null, stockInfo? : stockAPIOptions) => {
     if (!stockSymbol) {

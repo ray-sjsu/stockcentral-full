@@ -26,7 +26,7 @@ const ChartList = ({chartData}: ChartListProps) => {
     }
 
     return (
-        <section className="flex flex-col gap-2">
+        <div className="flex flex-col gap-2">
             {
                 Array.isArray(ChartArray) && ChartArray.length > 0 ?
                     ChartArray.map((entry, index) => (
@@ -36,7 +36,7 @@ const ChartList = ({chartData}: ChartListProps) => {
                     ))
                 : (<h1>News Data not available</h1>)
             }
-        </section>
+        </div>
     )
 }
 

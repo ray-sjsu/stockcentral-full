@@ -23,6 +23,8 @@ export const SignUpFormSchema = z
     path: ["confirmPassword"],
     message: "Password do not match",
   });
+
+
 export type TSignUpFormSchema = z.infer<typeof SignUpFormSchema>
 
 // Define schema for server-side input validation (/api/user)
@@ -34,9 +36,6 @@ export const UserCreationSchema = z.object({
     .min(1, "Password is required")
     .min(8, "Password must have than 8 characters"),
 });
-
-
-
 
 
 export type stockAPIOptions = "all"
@@ -82,3 +81,19 @@ export type stockAPISearchEntry = {
 }
 
 export type stockAPISearchArray = stockAPISearchEntry[] | null
+
+export type stockAPICompanyProfile = {
+  country: string,
+  currency: string,
+  estimateCurrency: string,
+  exchange: string,
+  finnhubIndustry: string,
+  ipo: string,
+  logo: string,
+  marketCapitalization: number,
+  name: string,
+  phone: string,
+  shareOutstanding: number,
+  ticker: string,
+  weburl: string
+}

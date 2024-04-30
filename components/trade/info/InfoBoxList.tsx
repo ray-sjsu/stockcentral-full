@@ -4,11 +4,15 @@ import InfoBox from './InfoBox'
 
 type InfoBoxListProps = {
     otherInfo: stockAPIInfo | null
+    currentPrice: number | null
 }
 
-const InfoBoxList = ({ otherInfo } : InfoBoxListProps) => {
+const InfoBoxList = ({ otherInfo, currentPrice } : InfoBoxListProps) => {
   return (
-    <section className="grid grid-cols-3 gap-2">
+    <div className="grid grid-cols-4 gap-2">
+        {currentPrice ? (
+            <InfoBox title={`current price`} value={currentPrice} />
+        ): null}
         {otherInfo ? (
             Object.entries(otherInfo).map(([key, value]) => (
                 <div key={value}>
@@ -18,7 +22,7 @@ const InfoBoxList = ({ otherInfo } : InfoBoxListProps) => {
         ) : (
             <h1>Stock info not available</h1>
         )}
-    </section>
+    </div>
   )
 }
 

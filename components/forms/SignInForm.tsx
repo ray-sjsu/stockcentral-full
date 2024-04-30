@@ -1,58 +1,89 @@
 "use client";
 
 import { useForm } from "react-hook-form";
-import * as z from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { signIn } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
-
-const FormSchema = z.object({
-  email: z.string().min(1, "Email is required").email("Invalid email"),
-  password: z
-    .string()
-    .min(1, "Password is required")
-    .min(8, "Password must have than 8 characters"),
-});
+import { SignInFormSchema, TSignInFormSchema } from "@/lib/types/types";
+import { MdEmail } from "react-icons/md";
+import { FaKey } from "react-icons/fa";
+import { RiLoader5Fill } from "react-icons/ri";
+import { useState } from "react";
+import { FaExclamationCircle } from "react-icons/fa";
 
 const SignInForm = () => {
   const router = useRouter();
-  const form = useForm<z.infer<typeof FormSchema>>({
-    resolver: zodResolver(FormSchema),
+  const [errorMessage, setErrorMessage] = useState("")
+  const form = useForm<TSignInFormSchema>({
+    resolver: zodResolver(SignInFormSchema),
     defaultValues: {
       email: "",
       password: "",
     },
   });
 
-  const onSubmit = async (values: z.infer<typeof FormSchema>) => {
+  const onSubmit = async (values: TSignInFormSchema) => {
     const signInData = await signIn("credentials", {
       email: values.email,
       password: values.password,
       redirect: false,
     });
     if (signInData?.error) {
-      // add error handling (toast?)
+      setErrorMessage(signInData?.error)
+      form.reset()
     } else {
       router.refresh();
-      router.push("/admin");
+      router.push("/profile");
     }
   };
 
   return (
-    <form onSubmit={form.handleSubmit(onSubmit)} className="w-60 flex flex-col gap-2 mt-20 items-center text-red-500">
-      <input type="email" placeholder="email" {...form.register("email")} />
+    <form onSubmit={form.handleSubmit(onSubmit)} className="w-full flex flex-col gap-2 items-center text-red-500">
+      <input type="email" placeholder="email" {...form.register("email")} disabled={form.formState.isSubmitting} />
       <input
         type="password"
         placeholder="password"
+        disabled={form.formState.isSubmitting}
         {...form.register("password")}
       />
-      <button type="submit">Submit</button>
+      <button type="submit" disabled={form.formState.isSubmitting}>Submit</button>
+      <div>
+        {
+          form.formState.errors.email ? (
+            <div className="flex flex-row items-center justify-center gap-2">
+            <MdEmail />
+            <p className="text-2xl">
+              {`${form.formState.errors.email?.message}`}
+            </p>
+        </div>
+          ) : null
+        }
+        {
+          form.formState.errors.password ? (
+            <div className="flex flex-row items-center justify-center gap-2">
+            <FaKey />
+            <p className="text-2xl">
+              {`${form.formState.errors.password?.message}`}
+            </p>
+        </div>
+          ) : null
+        }
+        {
+          errorMessage ? (
+            <div className="flex flex-row items-center justify-center gap-2">
+            <FaExclamationCircle />
+            <p className="text-2xl">
+              {`${errorMessage}`}
+            </p>
+        </div>
+          ) : null
+        }
+      </div>
       {
-        form.formState.errors ? <h1>There is an error</h1> : null
-      }
-      {
-        form.formState.isSubmitting ? <h1>Currently submitting</h1> : <h1>Not submitting</h1>
+        form.formState.isSubmitting ? (
+          <RiLoader5Fill className="animate-spin w-100 h-100" />
+        ) : null
       }
       <p className="text-center text-sm text-gray-600 mt-2">
         If you don&apos;t have an account, please&nbsp;

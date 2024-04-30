@@ -9,7 +9,7 @@ type NewsListProps = {
 
 const NewsList = ({ newsData }: NewsListProps) => {
     return (
-        <section className="flex flex-col gap-2">
+        <div className="flex flex-col gap-2">
             {
                 Array.isArray(newsData) && newsData.length > 0 ?
                     newsData.map((entry, index) => (
@@ -27,7 +27,7 @@ const NewsList = ({ newsData }: NewsListProps) => {
                     ))
                 : (<h1>News Data not available</h1>)
             }
-        </section>
+        </div>
     )
 }
 
