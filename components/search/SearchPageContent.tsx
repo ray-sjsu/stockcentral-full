@@ -62,8 +62,8 @@ const SearchPageContent = () => {
       <hr className="w-[40%] border my-8"></hr>
       <div className="flex flex-col gap-2">
         <div className="flex flex-row items-center justify-center gap-2">
-          <FaList className="h-full" />
-          <h1 className="text-2xl">Results</h1>
+          <FaList className="h-full size-4" />
+          <h1 className="text-3xl">Results</h1>
         </div>
         {isSubmitting ? (
           <RiLoader5Fill className="animate-spin size-full w-50 h-50" />
@@ -71,7 +71,7 @@ const SearchPageContent = () => {
         {!isSubmitting && firstSearch && searchResults.length == 0 ? (
           <div className="flex flex-row items-center justify-center gap-2">
             <FaQuestionCircle />
-            <p>No relevant results!</p>
+            <p className="text-2xl">No relevant results!</p>
           </div>
         ) : null}
         {!firstSearch ? (

@@ -5,7 +5,10 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { SignUpFormSchema, TSignUpFormSchema } from "@/lib/types/types";
-
+import { MdEmail } from "react-icons/md";
+import { FaKey } from "react-icons/fa";
+import { RiLoader5Fill } from "react-icons/ri";
+import { FaUser } from "react-icons/fa";
 
 
 const SignUpForm = () => {
@@ -36,7 +39,7 @@ const SignUpForm = () => {
     if (response.ok) {
       router.push("/sign-in");
     } else {
-      // add error handling
+      alert(`Sign-up went wrong`)
     }
   };
 
@@ -44,7 +47,7 @@ const SignUpForm = () => {
     <div>
       <form
         onSubmit={form.handleSubmit(onSubmit)}
-        className="w-60 flex flex-col gap-2 mt-20 items-center text-red-500"
+        className="w-full flex flex-col gap-2 items-center text-red-500"
       >
         <input
           type="text"
@@ -63,12 +66,53 @@ const SignUpForm = () => {
           {...form.register("confirmPassword")}
         />
         <button type="submit">Sign Up</button>
-        {form.formState.errors ? <h1>{form.formState.errors.username?.message}</h1> : null}
-        {form.formState.isSubmitting ? (
-          <h1>Currently submitting</h1>
-        ) : (
-          <h1>Not submitting</h1>
-        )}
+        <div>
+        {
+          form.formState.errors.username ? (
+            <div className="flex flex-row items-center justify-center gap-2">
+            <FaUser />
+            <p className="text-2xl">
+              {`${form.formState.errors.username?.message}`}
+            </p>
+        </div>
+          ) : null
+        }
+        {
+          form.formState.errors.email ? (
+            <div className="flex flex-row items-center justify-center gap-2">
+            <MdEmail />
+            <p className="text-2xl">
+              {`${form.formState.errors.email?.message}`}
+            </p>
+        </div>
+          ) : null
+        }
+        {
+          form.formState.errors.password ? (
+            <div className="flex flex-row items-center justify-center gap-2">
+            <FaKey />
+            <p className="text-2xl">
+              {`${form.formState.errors.password?.message}`}
+            </p>
+        </div>
+          ) : null
+        }
+        {
+          form.formState.errors.confirmPassword ? (
+            <div className="flex flex-row items-center justify-center gap-2">
+            <FaKey />
+            <p className="text-2xl">
+              {`${form.formState.errors.confirmPassword?.message}`}
+            </p>
+        </div>
+          ) : null
+        }
+      </div>
+      {
+        form.formState.isSubmitting ? (
+          <RiLoader5Fill className="animate-spin w-100 h-100" />
+        ) : null
+      }
       </form>
       <p className="text-center text-sm text-gray-600 mt-2">
         If you do have an account, please&nbsp;
