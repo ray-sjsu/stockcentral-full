@@ -1,8 +1,11 @@
 import requests
 from datetime import date, timedelta
+from dotenv import load_dotenv
+import os
 
 base_url = 'https://finnhub.io/api/v1/'
-api_key = 'cnj5u49r01qkq94gad40cnj5u49r01qkq94gad4g'
+load_dotenv()
+api_key = os.getenv('FINNHUB_API_KEY')
 
 
 def calculate_quarterly(q_reports, a_reports, report_type, criteria):
@@ -230,8 +233,10 @@ def get_market_status():
 
 def get_stock_data(symbol):
     if (symbol == None or symbol == ''): return
-    return get_stock_price(symbol), get_basic_financials(symbol), get_quarterly_data(symbol), get_news(symbol), [symbol_lookup(symbol)[0]], get_recommendation(symbol)
-
+    company_profile=get_company(symbol)
+    if company_profile:
+        return get_stock_price(symbol), get_basic_financials(symbol), get_quarterly_data(symbol), get_news(symbol), company_profile, get_recommendation(symbol)
+    return
 # Testing
 def test():
     test_symbol = 'APPL'
