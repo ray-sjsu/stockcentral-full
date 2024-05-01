@@ -3,7 +3,7 @@ import React from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { BsQuestionCircleFill } from "react-icons/bs";
-import { TbSearch } from "react-icons/tb";
+import { RiLoader5Fill } from "react-icons/ri";
 
 type HeaderProps = {
   stockCompany: stockAPICompanyProfile | null;
@@ -20,7 +20,7 @@ const StockHeader = ({
     <header className="flex flex-row box-border w-full bg-slate-500 absolute top-0 justify-between">
       {isLoading ? (
         <div className="flex flex-row items-center gap-3 mx-4 my-1 flex-1">
-          <TbSearch className="aspect-square items-center rounded-full w-[50px] h-[50px]" />
+          <RiLoader5Fill className="animate-spin aspect-square items-center rounded-full w-[50px] h-[50px]" />
           <div>
             <h1>Loading names...</h1>
             <h1>Loading industry...</h1>
