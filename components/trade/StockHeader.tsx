@@ -31,7 +31,7 @@ const StockHeader = ({
       {stockCompany && !isLoading ? (
         <div className="flex flex-row items-center gap-3 mx-4 my-1 flex-1">
           <a href={stockCompany.weburl}>
-            <img
+            <Image
               src={stockCompany.logo}
               width={50}
               height={50}

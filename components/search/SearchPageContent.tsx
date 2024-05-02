@@ -7,10 +7,11 @@ import { AiOutlineStock } from "react-icons/ai";
 import { FaQuestionCircle } from "react-icons/fa";
 import { FaList } from "react-icons/fa";
 import { TbSearch } from "react-icons/tb";
+import { LuServerCrash } from "react-icons/lu";
 
 const SearchPageContent = () => {
   const [searchQuery, setSearchQuery] = useState("");
-  const [searchResults, setSearchResults] = useState([]);
+  const [searchResults, setSearchResults] = useState<[] | null>([]);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [firstSearch, setFirstSearch] = useState(false);
 
@@ -23,7 +24,7 @@ const SearchPageContent = () => {
     if (isSubmitting) {
       retrieveSearchData();
     }
-  }, [isSubmitting]);
+  }, [isSubmitting, searchQuery]);
 
   const handleSearch = (query: string) => {
     const input = query.toUpperCase();
@@ -61,26 +62,35 @@ const SearchPageContent = () => {
       </form>
       <hr className="w-[40%] border my-8"></hr>
       <div className="flex flex-col gap-2">
-        <div className="flex flex-row items-center justify-center gap-2">
-          <FaList className="h-full size-4" />
-          <h1 className="text-3xl">Results</h1>
-        </div>
+        {firstSearch ? (
+          <div className="flex flex-row items-center justify-center gap-2">
+            <FaList className="h-full size-4" />
+            <h1 className="text-3xl">Results</h1>
+          </div>
+        ) : null}
+
         {isSubmitting ? (
           <RiLoader5Fill className="animate-spin size-full w-50 h-50" />
         ) : null}
-        {!isSubmitting && firstSearch && searchResults.length == 0 ? (
+        {!isSubmitting && firstSearch && searchResults && searchResults.length == 0 ? (
           <div className="flex flex-row items-center justify-center gap-2">
             <FaQuestionCircle />
             <p className="text-2xl">No relevant results!</p>
           </div>
         ) : null}
+        {!isSubmitting && !searchResults ? (
+          <div className="flex flex-row items-center justify-center gap-2">
+            <LuServerCrash />
+            <p className="text-2xl">API Down</p>
+          </div>
+        ) : null}
         {!firstSearch ? (
           <div className="flex flex-row items-center justify-center gap-2">
             <AiOutlineStock />
-            <p>Search a stock ticker!</p>
+            <p className="text-2xl">Search a stock ticker!</p>
           </div>
         ) : null}
-        {searchResults.length > 0 && !isSubmitting ? (
+        {searchResults && searchResults.length > 0 && !isSubmitting ? (
           <SearchMain searchArray={searchResults} />
         ) : null}
       </div>

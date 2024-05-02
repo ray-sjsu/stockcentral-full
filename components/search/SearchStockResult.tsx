@@ -2,6 +2,7 @@ import React from "react";
 import Link from "next/link";
 import { stockAPISearchEntry } from "@/lib/types/types";
 import { FaRegBuilding } from "react-icons/fa";
+import Image from "next/image";
 
 const StockEntry = ({
   description = "Company Name",
@@ -10,7 +11,6 @@ const StockEntry = ({
   type = "null",
   image = "/next.svg",
 }: stockAPISearchEntry) => {
-  const isFavorited = false;
   let redirectUrl = `/trade/?stock=${displaySymbol}`;
   if (!displaySymbol || displaySymbol === "") {
     redirectUrl = "/search";
@@ -29,7 +29,7 @@ const StockEntry = ({
             className="bg-red-500 size-full bg-no-repeat"
           />
         ) : (
-          <img
+          <Image
             src={image}
             width={50}
             height={50}
