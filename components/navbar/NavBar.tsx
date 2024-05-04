@@ -1,6 +1,6 @@
 import React from "react";
 import { TbSearch } from "react-icons/tb";
-import { TbDiamondFilled } from "react-icons/tb";
+import { TbDiamond } from "react-icons/tb";
 import NavIcon from "./NavIcon";
 import NavUserButton from "./NavUserButton";
 
@@ -17,7 +17,7 @@ const NavBar = () => {
         <NavIcon
           href="/trade"
           className="h-4/6"
-          iconElement={<TbDiamondFilled className="size-full" />}
+          iconElement={<TbDiamond className="size-full" />}
         />
         <NavUserButton />
       </div>

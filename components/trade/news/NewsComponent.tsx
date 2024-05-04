@@ -1,5 +1,5 @@
 import React from 'react'
-import { TbChartAreaFilled } from "react-icons/tb"
+import { TbChartArea } from "react-icons/tb"
 import Image from 'next/image'
 
 type NewsComponentProps = {
@@ -33,7 +33,7 @@ const NewsComponent = ({
         <div className="flex items-center justify-center h-full border aspect-square">
             {
                 !imageUrl ? (
-                    <TbChartAreaFilled height={50} width={50} className="bg-red-500 size-full" />
+                    <TbChartArea height={50} width={50} className="bg-red-500 size-full" />
                 ) : (
                     <Image
                         src={imageUrl}
