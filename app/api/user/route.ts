@@ -8,10 +8,9 @@ export async function POST(req: Request) {
     const body: unknown = await req.json();
     const zodParse = await UserCreationSchema.safeParseAsync(body);
     if (zodParse.error) {
-      throw new Error("Serverside userSchema validation failed for api/user");
+      throw new Error("Serverside UserCreationSchema validation failed for /api/user");
     }
     const { email, username, password } = zodParse.data;
-
 
     // Verify user with username or email doesn't exist in db
     const existingUser = await db.user.findFirst({
@@ -45,10 +44,11 @@ export async function POST(req: Request) {
       );
     }
 
-    // Valid user, create a new user
-    const hashSaltRounds = 20;
+    // Hash password first (4 is the minimum. 12 is recommended. Lower this value if takes 40 seconds for sign-in and sign-up to respond.)
+    const hashSaltRounds = 12;
     const hashedPassword = await hash(password, hashSaltRounds);
 
+    // Valid user, create a new user
     const newUser = await db.user.create({
       data: {
         username,
