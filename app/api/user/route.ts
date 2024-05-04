@@ -12,6 +12,7 @@ export async function POST(req: Request) {
     }
     const { email, username, password } = zodParse.data;
 
+
     // Verify user with username or email doesn't exist in db
     const existingUser = await db.user.findFirst({
       where: {
@@ -47,6 +48,7 @@ export async function POST(req: Request) {
     // Valid user, create a new user
     const hashSaltRounds = 20;
     const hashedPassword = await hash(password, hashSaltRounds);
+
     const newUser = await db.user.create({
       data: {
         username,
