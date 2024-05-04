@@ -9,7 +9,8 @@ import { MdEmail } from "react-icons/md";
 import { FaKey } from "react-icons/fa";
 import { RiLoader5Fill } from "react-icons/ri";
 import { FaUser } from "react-icons/fa";
-
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const SignUpForm = () => {
   const router = useRouter();
@@ -39,12 +40,23 @@ const SignUpForm = () => {
     if (response.ok) {
       router.push("/sign-in");
     } else {
-      alert(`Sign-up went wrong`)
+      const responseData = await response.json();
+      toast.error(`${responseData.message}`, {
+        position: "bottom-center",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+        });
     }
   };
 
   return (
     <div>
+      <ToastContainer />
       <form
         onSubmit={form.handleSubmit(onSubmit)}
         className="w-full flex flex-col gap-2 items-center text-red-500"
@@ -67,52 +79,42 @@ const SignUpForm = () => {
         />
         <button type="submit">Sign Up</button>
         <div>
-        {
-          form.formState.errors.username ? (
+          {form.formState.errors.username ? (
             <div className="flex flex-row items-center justify-center gap-2">
-            <FaUser />
-            <p className="text-2xl">
-              {`${form.formState.errors.username?.message}`}
-            </p>
-        </div>
-          ) : null
-        }
-        {
-          form.formState.errors.email ? (
+              <FaUser />
+              <p className="text-2xl">
+                {`${form.formState.errors.username?.message}`}
+              </p>
+            </div>
+          ) : null}
+          {form.formState.errors.email ? (
             <div className="flex flex-row items-center justify-center gap-2">
-            <MdEmail />
-            <p className="text-2xl">
-              {`${form.formState.errors.email?.message}`}
-            </p>
-        </div>
-          ) : null
-        }
-        {
-          form.formState.errors.password ? (
+              <MdEmail />
+              <p className="text-2xl">
+                {`${form.formState.errors.email?.message}`}
+              </p>
+            </div>
+          ) : null}
+          {form.formState.errors.password ? (
             <div className="flex flex-row items-center justify-center gap-2">
-            <FaKey />
-            <p className="text-2xl">
-              {`${form.formState.errors.password?.message}`}
-            </p>
-        </div>
-          ) : null
-        }
-        {
-          form.formState.errors.confirmPassword ? (
+              <FaKey />
+              <p className="text-2xl">
+                {`${form.formState.errors.password?.message}`}
+              </p>
+            </div>
+          ) : null}
+          {form.formState.errors.confirmPassword ? (
             <div className="flex flex-row items-center justify-center gap-2">
-            <FaKey />
-            <p className="text-2xl">
-              {`${form.formState.errors.confirmPassword?.message}`}
-            </p>
+              <FaKey />
+              <p className="text-2xl">
+                {`${form.formState.errors.confirmPassword?.message}`}
+              </p>
+            </div>
+          ) : null}
         </div>
-          ) : null
-        }
-      </div>
-      {
-        form.formState.isSubmitting ? (
+        {form.formState.isSubmitting ? (
           <RiLoader5Fill className="animate-spin w-100 h-100" />
-        ) : null
-      }
+        ) : null}
       </form>
       <p className="text-center text-sm text-gray-600 mt-2">
         If you do have an account, please&nbsp;
