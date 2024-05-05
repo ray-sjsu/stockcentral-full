@@ -8,15 +8,6 @@
   --background-end-rgb: 255, 255, 255;
 }
 
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
-  }
-}
-
 body {
   color: rgb(var(--foreground-rgb));
   background: linear-gradient(
@@ -25,6 +16,18 @@ body {
       rgb(var(--background-end-rgb))
     )
     rgb(var(--background-start-rgb));
+}
+
+input {
+  @apply px-2 py-1;
+}
+
+button[type="submit"] {
+  @apply px-4 py-2 bg-amber-500 cursor-pointer text-xl rounded-full disabled:cursor-not-allowed
+}
+
+nav {
+  @apply bg-red-700 text-slate-100
 }
 
 @layer utilities {

@@ -45,14 +45,13 @@ const SearchPageContent = () => {
           onChange={(e) => handleSearch(e.target.value)}
           value={searchQuery}
           placeholder="Stock Symbol"
-          className="text-red-500 rounded px-2"
           maxLength={5}
           pattern="^[A-Za-z]*$"
           disabled={isSubmitting}
         />
         <button
           onClick={handleOnClick}
-          className="p-2 bg-slate-600 rounded flex flex-row gap-1"
+          className="flex flex-row gap-1"
           disabled={isSubmitting}
           type="submit"
         >

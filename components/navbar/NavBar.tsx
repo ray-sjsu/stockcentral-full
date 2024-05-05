@@ -7,7 +7,7 @@ import NavUserButton from "./NavUserButton";
 const NavBar = () => {
 
   return (
-    <nav className="box-border w-full bg-red-700 fixed inset-x-0 bottom-0 h-20 z-10">
+    <nav className="box-border w-full fixed inset-x-0 bottom-0 h-20 z-10">
       <div className="flex flex-row flex-nowrap items-center justify-around h-full w-full grow">
         <NavIcon
           href="/search"
