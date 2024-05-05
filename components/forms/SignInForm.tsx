@@ -11,6 +11,7 @@ import { RiLoader5Fill } from "react-icons/ri";
 import MessageWithIcon from "../MessageWithIcon";
 import FormNavLink from "./FormNavLink";
 import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const SignInForm = () => {
   const router = useRouter();
@@ -28,7 +29,10 @@ const SignInForm = () => {
       password: values.password,
       redirect: false,
     });
-    if (signInData?.error) {
+    if (!signInData?.error) {
+      router.refresh();
+      router.push("/profile");
+    } else {
       toast.error(`Incorrect Credentials`, {
         position: "top-center",
         autoClose: 5000,
@@ -40,9 +44,6 @@ const SignInForm = () => {
         theme: "light",
       });
       form.reset();
-    } else {
-      router.refresh();
-      router.push("/profile");
     }
   };
 
@@ -78,6 +79,8 @@ const SignInForm = () => {
           icon={<FaKey className="size-5" />}
           className="flex-row text-red-700"
         />
+        <p>{form.formState.errors.email?.message}</p>
+        <p>{form.formState.errors.password?.message}</p>
       </div>
       {form.formState.isSubmitting ? (
         <RiLoader5Fill className="animate-spin w-100 h-100" />

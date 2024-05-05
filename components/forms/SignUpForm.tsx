@@ -12,6 +12,7 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import MessageWithIcon from "../MessageWithIcon";
 import FormNavLink from "./FormNavLink";
+import "react-toastify/dist/ReactToastify.css";
 
 const SignUpForm = () => {
   const router = useRouter();
@@ -80,10 +81,7 @@ const SignUpForm = () => {
         {...form.register("confirmPassword")}
         disabled={form.formState.isSubmitting}
       />
-      <button
-        type="submit"
-        disabled={form.formState.isSubmitting}
-      >
+      <button type="submit" disabled={form.formState.isSubmitting}>
         Submit
       </button>
       <div>
