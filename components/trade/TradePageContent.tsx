@@ -25,6 +25,7 @@ const TradePageContent = () => {
       setStockData(stockDataArray);
       if (!stockDataArray) {
         setAPIStatus("error");
+        document.title = "Error";
       } else {
         setAPIStatus("success");
       }
@@ -45,7 +46,8 @@ const TradePageContent = () => {
             {APIStatus === "error" ? (
               <div className="flex flex-col items-center justify-center gap-4">
                 <h1 className="text-4xl text-center">
-                  There has been an API error. <br></br>Or, entered invalid stock symbol.
+                  There has been an API error. <br></br>Or, entered invalid
+                  stock symbol.
                 </h1>
                 <FaRegTrashAlt className="size-20 w-100 h-100" />
                 <Link
