@@ -8,7 +8,8 @@
     "next-dev": "npm install && next dev",
     "db": "npx prisma studio",
     "db-reset": "npx prisma migrate reset",
-    "build": "npm install && npx prisma migrate reset --force && next build",
+    "build-dev": "npm install && npx prisma migrate reset --force && next build",
+    "build": "npx prisma generate && next build",
     "start": "next start",
     "lint": "next lint"
   },

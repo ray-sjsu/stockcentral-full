@@ -1,0 +1,9 @@
+FROM python:3.9
+WORKDIR /flask-server
+
+COPY flask-api/requirements.txt flask-api/app.py flask-api/data_retriever.py flask-api/app.py flask-api/.env ./
+RUN pip install -r ./requirements.txt
+ENV FLASK_ENV production
+
+EXPOSE 5000
+CMD ["gunicorn", "-b", "0.0.0.0:5000", "app:app"]
