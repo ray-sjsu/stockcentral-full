@@ -10,8 +10,6 @@ export const retrieveStockInfo = async (stockSymbol : string | null, stockInfo? 
     }
     const formData = new FormData()
     formData.append('stock_symbol', stockSymbol)
-    console.log(formData)
-    console.log(`stockAPIOptions: ${stockInfo}`)
 
     try {
       const response = await fetch('http://localhost:5000/stocks', {
@@ -40,8 +38,6 @@ export const retrieveStockSearchList = async (stockSymbol: string) => {
     }
     const formData = new FormData()
     formData.append('stock_symbol', stockSymbol)
-    console.log(formData)
-    console.log(`stockAPISearchResults Input: ${stockSymbol}`)
 
     try {
         const response = await fetch('http://localhost:5000/search', {

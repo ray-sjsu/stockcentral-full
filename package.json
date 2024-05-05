@@ -7,6 +7,7 @@
     "flask-dev": "cd flask-api && python -m venv venv && pip install -r requirements.txt && set FLASK_APP=app.py && set FLASK_ENV=development && set FLASK_DEBUG=1 && python -m flask run",
     "next-dev": "npm install && next dev",
     "db": "npx prisma studio",
+    "db-reset": "npx prisma migrate reset",
     "build": "npm install && npx prisma generate && next build",
     "start": "next start",
     "lint": "next lint"
@@ -20,8 +21,8 @@
     "chartjs-plugin-zoom": "^2.0.1",
     "iron-session": "^8.0.1",
     "jose": "^5.2.4",
-    "next": "14.1.4",
-    "next-auth": "^4.22.1",
+    "next": "^14.2.3",
+    "next-auth": "^4.24.7",
     "react": "^18",
     "react-chartjs-2": "^5.2.0",
     "react-dom": "^18",
