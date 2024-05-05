@@ -1,14 +1,12 @@
 import React from "react";
 import Link from "next/link";
 import { stockAPISearchEntry } from "@/lib/types/types";
-import { FaRegBuilding } from "react-icons/fa";
 import Image from "next/image";
+import { AiFillInfoCircle } from "react-icons/ai";
 
 const StockEntry = ({
   description = "Company Name",
   displaySymbol = "",
-  symbol = "null",
-  type = "null",
   image = "/next.svg",
 }: stockAPISearchEntry) => {
   let redirectUrl = `/trade/?stock=${displaySymbol}`;
@@ -19,28 +17,23 @@ const StockEntry = ({
   return (
     <Link
       href={redirectUrl}
-      className={`flex flex-row items-center w-full h-18 rounded bg-slate-400 p-2 gap-1 text-sl border-cyan-500 border-solid ${!displaySymbol ? "pointer-events-none" : ""}`}
+      className={`flex flex-row items-center bg-amber-500 w-full h-18 rounded px-3 py-2 gap-y-1 gap-x-3 text-sl border-solid`}
     >
-      <div className="flex items-center justify-center border aspect-square h-8">
+      <div className="flex items-center justify-center aspect-square h-12">
         {!image ? (
-          <FaRegBuilding
-            height={50}
-            width={50}
-            className="bg-red-500 size-full bg-no-repeat"
-          />
+          <AiFillInfoCircle height={100} width={100} className="size-full" />
         ) : (
           <Image
             src={image}
-            width={50}
-            height={50}
+            width={100}
+            height={100}
             alt={`${displaySymbol} - ${description}`}
-            className="object-cover size-full"
           />
         )}
       </div>
-      <div className="flex flex-col truncate text-start justify-self-stretch text-sm grow ml-2">
-        <h1>{displaySymbol}</h1>
-        <p>{description}</p>
+      <div className="flex flex-col truncate text-start justify-self-stretch text-sm grow">
+        <h1 className="text-2xl text-bold">{displaySymbol}</h1>
+        <p className="text-lg capitalize">{description.toLowerCase()}</p>
       </div>
     </Link>
   );

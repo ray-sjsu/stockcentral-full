@@ -8,15 +8,12 @@ import { SignInFormSchema, TSignInFormSchema } from "@/lib/types/types";
 import { MdEmail } from "react-icons/md";
 import { FaKey } from "react-icons/fa";
 import { RiLoader5Fill } from "react-icons/ri";
-import { useState } from "react";
-import { FaExclamationCircle } from "react-icons/fa";
 import MessageWithIcon from "../MessageWithIcon";
 import FormNavLink from "./FormNavLink";
 import { ToastContainer, toast } from "react-toastify";
 
 const SignInForm = () => {
   const router = useRouter();
-  const [errorMessage, setErrorMessage] = useState("");
   const form = useForm<TSignInFormSchema>({
     resolver: zodResolver(SignInFormSchema),
     defaultValues: {
@@ -32,11 +29,7 @@ const SignInForm = () => {
       redirect: false,
     });
     if (signInData?.error) {
-      setErrorMessage("Incorrect Credentials");
-      form.reset();
-    } else {
-      router.refresh();
-      toast.success(`Sign-in successful`, {
+      toast.error(`Incorrect Credentials`, {
         position: "top-center",
         autoClose: 5000,
         hideProgressBar: false,
@@ -46,6 +39,9 @@ const SignInForm = () => {
         progress: undefined,
         theme: "light",
       });
+      form.reset();
+    } else {
+      router.refresh();
       router.push("/profile");
     }
   };
@@ -68,24 +64,19 @@ const SignInForm = () => {
         {...form.register("password")}
         disabled={form.formState.isSubmitting}
       />
-      <button
-        type="submit"
-        disabled={form.formState.isSubmitting}
-      >
+      <button type="submit" disabled={form.formState.isSubmitting}>
         Submit
       </button>
       <div>
         <MessageWithIcon
           message={form.formState.errors.email?.message}
-          icon={<MdEmail />}
+          icon={<MdEmail className="size-6" />}
+          className="flex-row text-red-700"
         />
         <MessageWithIcon
           message={form.formState.errors.password?.message}
-          icon={<FaKey />}
-        />
-        <MessageWithIcon
-          message={errorMessage}
-          icon={<FaExclamationCircle />}
+          icon={<FaKey className="size-5" />}
+          className="flex-row text-red-700"
         />
       </div>
       {form.formState.isSubmitting ? (

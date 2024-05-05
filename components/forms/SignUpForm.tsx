@@ -39,16 +39,6 @@ const SignUpForm = () => {
     });
 
     if (response.ok) {
-      toast.success(`Account ${values.username} created successfully`, {
-        position: "top-center",
-        autoClose: 5000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        theme: "light",
-      });
       router.push("/sign-in");
     } else {
       const responseData = await response.json();
@@ -86,7 +76,7 @@ const SignUpForm = () => {
       />
       <input
         type="password"
-        placeholder="confirmPassword"
+        placeholder="confirm password"
         {...form.register("confirmPassword")}
         disabled={form.formState.isSubmitting}
       />
@@ -99,19 +89,23 @@ const SignUpForm = () => {
       <div>
         <MessageWithIcon
           message={form.formState.errors.username?.message}
-          icon={<FaUser />}
+          icon={<FaUser className="size-5" />}
+          className="flex-row text-red-700"
         />
         <MessageWithIcon
           message={form.formState.errors.email?.message}
-          icon={<MdEmail />}
+          icon={<MdEmail className="size-6" />}
+          className="flex-row text-red-700"
         />
         <MessageWithIcon
           message={form.formState.errors.password?.message}
-          icon={<FaKey />}
+          icon={<FaKey className="size-5" />}
+          className="flex-row text-red-700"
         />
         <MessageWithIcon
           message={form.formState.errors.confirmPassword?.message}
-          icon={<FaKey />}
+          icon={<FaKey className="size-5" />}
+          className="flex-row text-red-700"
         />
       </div>
       {form.formState.isSubmitting ? (

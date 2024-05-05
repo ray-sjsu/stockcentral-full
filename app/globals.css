@@ -2,20 +2,16 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
+html {
+  @apply size-full;
 }
 
 body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+  @apply bg-slate-200;
+}
+
+hr {
+  @apply border-2 border-slate-950;
 }
 
 input {
@@ -23,11 +19,16 @@ input {
 }
 
 button[type="submit"] {
-  @apply px-4 py-2 bg-amber-500 cursor-pointer text-xl rounded-full disabled:cursor-not-allowed
+  @apply px-4 py-2 bg-amber-500 cursor-pointer text-xl rounded-full disabled:cursor-not-allowed;
 }
 
-nav {
-  @apply bg-red-700 text-slate-100
+nav,
+header {
+  @apply bg-red-700 text-slate-100;
+}
+
+img {
+  @apply object-cover aspect-square rounded-full bg-no-repeat;
 }
 
 @layer utilities {

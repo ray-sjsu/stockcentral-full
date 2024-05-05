@@ -17,7 +17,7 @@ const StockHeader = ({
   isLoading,
 }: HeaderProps) => {
   return (
-    <header className="flex flex-row box-border w-full bg-slate-500 absolute top-0 justify-between">
+    <header className="flex flex-row box-border w-full absolute top-0 justify-between py-2">
       {isLoading ? (
         <div className="flex flex-row items-center gap-3 mx-4 my-1 flex-1">
           <RiLoader5Fill className="animate-spin aspect-square items-center rounded-full w-[50px] h-[50px]" />
@@ -30,7 +30,7 @@ const StockHeader = ({
       ) : null}
       {stockCompany && !isLoading ? (
         <div className="flex flex-row items-center gap-3 mx-4 my-1 flex-1">
-          <a href={stockCompany.weburl}>
+          <Link href={stockCompany.weburl}>
             <Image
               src={stockCompany.logo}
               width={50}
@@ -38,7 +38,7 @@ const StockHeader = ({
               alt={`${stockCompany.name} logo - ${stockCompany.ticker}`}
               className="aspect-square items-center rounded-full"
             />
-          </a>
+          </Link>
           <div>
             <h1>{`${stockCompany.name} - ${stockCompany.ticker}`}</h1>
             <h1>{`Country: ${stockCompany.country} - ${stockCompany.finnhubIndustry}`}</h1>
@@ -58,7 +58,7 @@ const StockHeader = ({
           </div>
         </div>
       ) : null}
-      {!isLoading ? (
+      {/* {!isLoading ? (
         <div className="flex justify-center items-center mx-4 my-1 flex-1">
           {currentPrice && currentPrice !== 0 ? (
             <h1 className="text-center text-2xl">{`@ $${currentPrice}`}</h1>
@@ -66,16 +66,15 @@ const StockHeader = ({
             <h1>No current price</h1>
           )}
         </div>
-      ) : null}
+      ) : null} */}
       <Link href="/" className="flex flex-row items-center gap-2 mx-4 my-1 flex-1 justify-end">
         <Image
           src="/stockcentral-logo.png"
           width={50}
           height={50}
           alt="StockCentral logo"
-          className="aspect-square items-center"
         />
-        <h1 className="text-2xl">StockCentral</h1>
+        <h1 className="text-3xl">StockCentral</h1>
       </Link>
     </header>
   );

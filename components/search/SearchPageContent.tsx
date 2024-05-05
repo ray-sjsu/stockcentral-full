@@ -1,5 +1,5 @@
 "use client";
-import SearchMain from "@/components/search/SearchMain";
+import SearchResultList from "@/components/search/SearchMain";
 import { retrieveStockSearchList } from "@/lib/actions";
 import React, { useEffect, useState } from "react";
 import { RiLoader5Fill } from "react-icons/ri";
@@ -52,10 +52,10 @@ const SearchPageContent = () => {
         <button
           onClick={handleOnClick}
           className="flex flex-row gap-1"
-          disabled={isSubmitting}
+          disabled={isSubmitting || searchQuery.length === 0}
           type="submit"
         >
-          <TbSearch className="h-full size-4" />
+          <TbSearch className="h-full size-5" />
           Search
         </button>
       </form>
@@ -63,7 +63,7 @@ const SearchPageContent = () => {
       <div className="flex flex-col gap-2">
         {firstSearch ? (
           <div className="flex flex-row items-center justify-center gap-2">
-            <FaList className="h-full size-4" />
+            <FaList className="size-6" />
             <h1 className="text-3xl">Results</h1>
           </div>
         ) : null}
@@ -73,27 +73,26 @@ const SearchPageContent = () => {
         ) : null}
         {!isSubmitting && firstSearch && searchResults && searchResults.length == 0 ? (
           <div className="flex flex-row items-center justify-center gap-2">
-            <FaQuestionCircle />
+            <FaQuestionCircle className="size-5" />
             <p className="text-2xl">No relevant results!</p>
           </div>
         ) : null}
         {!isSubmitting && !searchResults ? (
           <div className="flex flex-row items-center justify-center gap-2">
-            <LuServerCrash />
+            <LuServerCrash className="size-5" />
             <p className="text-2xl">API Down</p>
           </div>
         ) : null}
         {!firstSearch ? (
           <div className="flex flex-row items-center justify-center gap-2">
-            <AiOutlineStock />
+            <AiOutlineStock className="size-8" />
             <p className="text-2xl">Search a stock ticker!</p>
           </div>
         ) : null}
         {searchResults && searchResults.length > 0 && !isSubmitting ? (
-          <SearchMain searchArray={searchResults} />
+          <SearchResultList searchArray={searchResults} />
         ) : null}
       </div>
-      <hr className="w-[40%] border my-8"></hr>
     </section>
   );
 };

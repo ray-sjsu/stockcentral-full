@@ -23,13 +23,16 @@ const TradePageContent = () => {
     const retrieveData = async () => {
       const stockDataArray = await retrieveStockInfo(stockQuery, "all");
       setStockData(stockDataArray);
+
       if (!stockDataArray) {
         setAPIStatus("error");
         document.title = "Error";
       } else {
         setAPIStatus("success");
+        document.title = stockQuery || "Trade";
       }
     };
+    document.title = "Loading..."
     retrieveData();
   }, [stockQuery]);
 
@@ -41,7 +44,7 @@ const TradePageContent = () => {
         isLoading={APIStatus === "loading"}
       />
       <main className="px-[10%] flex flex-col gap-6">
-        <section className="flex flex-col items-center mt-[10%]">
+        <section className="flex flex-col items-center mt-[15%]">
           <div className="flex flex-col w-10/12">
             {APIStatus === "error" ? (
               <div className="flex flex-col items-center justify-center gap-4">
@@ -75,14 +78,14 @@ const TradePageContent = () => {
         ) : null}
         {APIStatus === "success" ? (
           <section>
-            <hr className="w-full border my-8"></hr>
+            <hr className="w-full my-8"></hr>
             <h1 className="text-3xl mb-4">Charts</h1>
             <ChartList chartData={stockData[2]} />
           </section>
         ) : null}
         {APIStatus === "success" ? (
           <section>
-            <hr className="w-full border my-8"></hr>
+            <hr className="w-full my-8"></hr>
             <h1 className="text-3xl mb-4">News</h1>
             <NewsList newsData={stockData[3]} />
           </section>
