@@ -1,8 +1,6 @@
-1. Install Node.js
-2. Move into project folder or open project in an IDE (preferably VSCode)
-3. Open terminal
-4. Split terminal
-5. On one terminal run "npm run flask-dev"
-6. One the other terminal run "npm run next-dev"
+CMPE-133 - Spring 2024
 
-To view database and delete/modify records, run "npm run db", on a separate terminal.
+Frontend/UI Developer - [@raysjsu](https://github.com/ray-sjsu)
+Backend/API Developer - [@Ryzen141](https://github.com/Ryzan141)
+
+[Concept Figma Design](https://www.figma.com/file/NLgsIW9AbM1ag1BdgLKOUX/StockCentral?type=design&node-id=3-96&mode=design&t=TVjV1W6D1gWK35Ou-0)
