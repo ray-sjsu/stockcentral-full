@@ -5,6 +5,9 @@ services:
       context: .
       dockerfile: Dockerfile.flask
     container_name: flask_server
+    environment:
+      # Define the FINNHUB_API_KEY. Do not put quotes.
+      - FINNHUB_API_KEY=
     ports:
       - "5000:5000"
     networks:
@@ -19,10 +22,20 @@ services:
       - "3000:3000"
     environment:
       - FLASK_API_URL=http://flask_server:5000
+      - DATABASE_URL=file:./main.db
+
+      - NEXTAUTH_URL=http://localhost:3000 # Hosted locally
+
+      # Define your own SECRET_KEY and NEXTAUTH_SECRET. These are examples. Do not put quotes.
+      - SECRET_KEY=Y2vMqaWcy4xeb9XXhz60A6mnEJSmg1UTwYxvd7skffg=
+      - NEXTAUTH_SECRET=fQ+x+mFRfqOiDpAxdJGqDiTU+6yJ47ooTJWKa+vHFek=
     depends_on:
       - flask
     networks:
       - webnet
+    volumes:
+      - ./prisma:/prisma
+
 
 networks:
   webnet:
