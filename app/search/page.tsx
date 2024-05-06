@@ -13,8 +13,8 @@ const SearchPage = () => {
     <main>
       <div className="w-full m-[10%]"></div>
       <BigLogoSection />
-      <SearchPageContent />
       <SearchPageUserPref />
+      <SearchPageContent />
     </main>
   );
 };

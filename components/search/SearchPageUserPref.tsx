@@ -7,8 +7,8 @@ const SearchPageUserPref = async () => {
   return (
     <>
       {session?.user ? (
-        <section className="flex flex-col items-center">
-          <h1 className="text-red-500">{`You are logged in as ${session.user.username}`}</h1>
+        <section className="flex flex-col items-center mb-7">
+          <h1 className="text-red-500 text-2xl">{`You are logged in as ${session.user.username}`}</h1>
         </section>
       ) : null}
     </>

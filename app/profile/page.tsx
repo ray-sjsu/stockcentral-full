@@ -18,8 +18,10 @@ const ProfilePage = async () => {
       <div className="w-full m-[10%]"></div>
       <BigLogoSection />
       <section className="w-full flex flex-col justify-center items-center">
-        <h1>Profile Page</h1>
-        <p>Welcome, {session ? session.user.username : "Unauthorized User"}</p>
+        <h1 className="text-center mb-5 text-3xl">Profile Page</h1>
+        <p className="text-center text-2xl mb-8">
+          Welcome, {session ? session.user.username : "Unauthorized User"}
+        </p>
         <SignOutButton />
       </section>
     </main>

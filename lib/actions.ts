@@ -4,6 +4,8 @@
 
 import { stockAPIOptions } from "./types/types";
 
+const FLASK_API = process.env.FLASK_API_URL
+
 export const retrieveStockInfo = async (stockSymbol : string | null, stockInfo? : stockAPIOptions) => {
     if (!stockSymbol) {
         return null
@@ -12,7 +14,7 @@ export const retrieveStockInfo = async (stockSymbol : string | null, stockInfo? 
     formData.append('stock_symbol', stockSymbol)
 
     try {
-      const response = await fetch('http://localhost:5000/stocks', {
+      const response = await fetch(`${FLASK_API}/stocks`, {
         method: 'POST',
         body: formData
       });
@@ -40,7 +42,7 @@ export const retrieveStockSearchList = async (stockSymbol: string) => {
     formData.append('stock_symbol', stockSymbol)
 
     try {
-        const response = await fetch('http://localhost:5000/search', {
+        const response = await fetch(`${FLASK_API}/search`, {
           method: 'POST',
           body: formData
         });
