@@ -34,7 +34,7 @@ const SignInForm = () => {
       router.push("/profile");
     } else {
       toast.error(`Incorrect Credentials`, {
-        position: "top-center",
+        position: "bottom-center",
         autoClose: 5000,
         hideProgressBar: false,
         closeOnClick: true,

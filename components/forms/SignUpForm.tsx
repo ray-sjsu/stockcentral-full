@@ -44,7 +44,7 @@ const SignUpForm = () => {
     } else {
       const responseData = await response.json();
       toast.error(`${responseData.message}`, {
-        position: "top-center",
+        position: "bottom-center",
         autoClose: 5000,
         hideProgressBar: false,
         closeOnClick: true,
