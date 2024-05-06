@@ -1,12 +1,9 @@
 import requests
 from datetime import date, timedelta
-from dotenv import load_dotenv
 import os
 
 base_url = 'https://finnhub.io/api/v1/'
-load_dotenv()
-api_key = os.getenv('FINNHUB_API_KEY')
-
+api_key = os.environ.get('FINNHUB_API_KEY')
 
 def calculate_quarterly(q_reports, a_reports, report_type, criteria):
     quarter_values = {}

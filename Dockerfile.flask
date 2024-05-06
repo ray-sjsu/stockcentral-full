@@ -1,9 +1,11 @@
 FROM python:3.9
 WORKDIR /flask-server
 
-COPY flask-api/requirements.txt flask-api/app.py flask-api/data_retriever.py flask-api/app.py flask-api/.env ./
+ENV FLASK_ENV=production
+ENV FLASK_SKIP_DOTENV=true
+
+COPY flask-api/requirements.txt flask-api/app.py flask-api/data_retriever.py ./
 RUN pip install -r ./requirements.txt
-ENV FLASK_ENV production
 
 EXPOSE 5000
 CMD ["gunicorn", "-w", "4", "-b", "0.0.0.0:5000", "app:app"]
