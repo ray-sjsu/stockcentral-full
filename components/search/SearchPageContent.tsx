@@ -8,6 +8,7 @@ import { FaQuestionCircle } from "react-icons/fa";
 import { FaList } from "react-icons/fa";
 import { TbSearch } from "react-icons/tb";
 import { LuServerCrash } from "react-icons/lu";
+import MessageWithIcon from "../MessageWithIcon";
 
 const SearchPageContent = () => {
   const [searchQuery, setSearchQuery] = useState("");
@@ -59,7 +60,7 @@ const SearchPageContent = () => {
           Search
         </button>
       </form>
-      <hr className="w-[40%] border my-8"></hr>
+      <hr></hr>
       <div className="flex flex-col gap-2">
         {firstSearch ? (
           <div className="flex flex-row items-center justify-center gap-2">
@@ -71,23 +72,30 @@ const SearchPageContent = () => {
         {isSubmitting ? (
           <RiLoader5Fill className="animate-spin size-full w-50 h-50" />
         ) : null}
-        {!isSubmitting && firstSearch && searchResults && searchResults.length == 0 ? (
-          <div className="flex flex-row items-center justify-center gap-2">
-            <FaQuestionCircle className="size-5" />
-            <p className="text-2xl">No relevant results!</p>
-          </div>
+        {!isSubmitting &&
+        firstSearch &&
+        searchResults &&
+        searchResults.length == 0 ? (
+          <MessageWithIcon
+            className="flex-row"
+            message="No relevant results!"
+            icon={<FaQuestionCircle className="size-5" />}
+          />
         ) : null}
+
         {!isSubmitting && !searchResults ? (
-          <div className="flex flex-row items-center justify-center gap-2">
-            <LuServerCrash className="size-5" />
-            <p className="text-2xl">API Down</p>
-          </div>
+          <MessageWithIcon
+            className="flex-row"
+            message="API Down"
+            icon={<LuServerCrash className="size-5" />}
+          />
         ) : null}
         {!firstSearch ? (
-          <div className="flex flex-row items-center justify-center gap-2">
-            <AiOutlineStock className="size-8" />
-            <p className="text-2xl">Search a stock ticker!</p>
-          </div>
+          <MessageWithIcon
+            className="flex-row"
+            message="Search a stock ticker!"
+            icon={<AiOutlineStock className="size-8" />}
+          />
         ) : null}
         {searchResults && searchResults.length > 0 && !isSubmitting ? (
           <SearchResultList searchArray={searchResults} />

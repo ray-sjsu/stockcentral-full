@@ -17,7 +17,7 @@ const StockHeader = ({
   isLoading,
 }: HeaderProps) => {
   return (
-    <header className="flex flex-row box-border w-full absolute top-0 justify-between py-2">
+    <header className="flex flex-row box-border justify-between py-2">
       {isLoading ? (
         <div className="flex flex-row items-center gap-3 mx-4 my-1 flex-1">
           <RiLoader5Fill className="animate-spin aspect-square items-center rounded-full w-[50px] h-[50px]" />

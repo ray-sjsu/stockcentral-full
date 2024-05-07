@@ -20,8 +20,6 @@ const RootLayout = ({children}: Readonly<{children: React.ReactNode;}>) => {
         <ClientProvider>
           {children}
           <Nav />
-          {/* Add spacing below content to prevent navbar from hiding content */}
-          <div className="w-full m-[200px]"></div>
         </ClientProvider>
       </body>
     </html>

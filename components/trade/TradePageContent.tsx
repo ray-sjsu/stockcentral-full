@@ -34,7 +34,7 @@ const TradePageContent = () => {
     };
     document.title = "Loading..."
     retrieveData();
-  }, [stockQuery]);
+  }, []);
 
   return (
     <>
@@ -43,8 +43,8 @@ const TradePageContent = () => {
         currentPrice={stockData ? stockData[0] : null}
         isLoading={APIStatus === "loading"}
       />
-      <main className="px-[10%] flex flex-col gap-6">
-        <section className="flex flex-col items-center mt-[15%]">
+      <main className="flex flex-col gap-6">
+        <section className="flex flex-col items-center">
           <div className="flex flex-col w-10/12">
             {APIStatus === "error" ? (
               <div className="flex flex-col items-center justify-center gap-4">

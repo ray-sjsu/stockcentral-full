@@ -26,7 +26,7 @@ const ChartList = ({ chartData }: ChartListProps) => {
   }
 
   return (
-    <div className="flex flex-col gap-8">
+    <div className="flex flex-col justify-center gap-8">
       {Array.isArray(ChartArray) && ChartArray.length > 0 ? (
         ChartArray.map((entry, index) => (
           <div key={index}>

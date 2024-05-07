@@ -1,9 +1,10 @@
-"use client";
-import { getSession } from "next-auth/react";
+import { authOptions } from "@/lib/auth";
+import { getServerSession } from "next-auth";
 import React from "react";
 
 const SearchPageUserPref = async () => {
-  const session = await getSession();
+  const session = await getServerSession(authOptions);
+
   return (
     <>
       {session?.user ? (
