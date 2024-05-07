@@ -59,7 +59,7 @@ const SearchPageContent = () => {
           Search
         </button>
       </form>
-      <hr className="w-[40%] border my-8"></hr>
+      <hr></hr>
       <div className="flex flex-col gap-2">
         {firstSearch ? (
           <div className="flex flex-row items-center justify-center gap-2">
