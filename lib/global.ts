@@ -1,0 +1,1 @@
+export const DEFAULT_TRADE_LINK="/trade?stock=AAPL"

@@ -16,6 +16,7 @@ const NavIcon = ({
   return (
     <Link
       href={href}
+      prefetch={false}
       className={`cursor-pointer aspect-square flex justify-center items-center ${className}`}
     >
       {iconElement}

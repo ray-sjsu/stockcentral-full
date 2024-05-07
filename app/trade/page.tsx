@@ -1,4 +1,5 @@
 import TradePageContent from "@/components/trade/TradePageContent";
+import { DEFAULT_TRADE_LINK } from "@/lib/global";
 import { Metadata } from "next";
 import { redirect } from "next/navigation";
 
@@ -26,7 +27,7 @@ export async function generateMetadata({
 
 const TradePage = async ({ searchParams }: Props) => {
   if (!searchParams.stock) {
-    redirect("/trade?stock=AAPL");
+    redirect(DEFAULT_TRADE_LINK);
   }
 
   return <TradePageContent />;

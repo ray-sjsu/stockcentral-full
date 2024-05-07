@@ -3,6 +3,7 @@ import { TbSearch } from "react-icons/tb";
 import { TbDiamond } from "react-icons/tb";
 import NavIcon from "./NavIcon";
 import NavUserButton from "./NavUserButton";
+import { DEFAULT_TRADE_LINK } from "@/lib/global";
 
 const NavBar = () => {
 
@@ -15,7 +16,7 @@ const NavBar = () => {
           iconElement={<TbSearch className="size-full" />}
         />
         <NavIcon
-          href="/trade"
+          href={DEFAULT_TRADE_LINK}
           className="h-4/6"
           iconElement={<TbDiamond className="size-full" />}
         />
