@@ -17,7 +17,9 @@ const TradePage = ({ searchParams }: Props) => {
     redirect(DEFAULT_TRADE_LINK);
   }
 
-  return <TradePageContent />;
+  return (
+      <TradePageContent />
+  );
 };
 
 export default TradePage;

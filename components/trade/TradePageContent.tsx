@@ -43,7 +43,7 @@ const TradePageContent = () => {
         currentPrice={stockData ? stockData[0] : null}
         isLoading={APIStatus === "loading"}
       />
-      <main className="flex flex-col gap-6">
+      <main className="flex flex-col gap-6 pt-48">
         <section className="flex flex-col items-center">
           <div className="flex flex-col w-10/12">
             {APIStatus === "error" ? (

@@ -6,9 +6,8 @@ import NavUserButton from "./NavUserButton";
 import { DEFAULT_TRADE_LINK } from "@/lib/global";
 
 const NavBar = () => {
-
   return (
-    <nav className="box-border h-20 z-10">
+    <nav>
       <div className="flex flex-row flex-nowrap items-center justify-around h-full w-full grow">
         <NavIcon
           href="/search"
