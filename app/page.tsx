@@ -4,8 +4,8 @@ import LandingPageNavButton from "@/components/LandingPageNavButton";
 
 const Home = () => {
   return (
-    <main className="flex flex-col items-center justify-center mt-10">
-      <section className="flex flex-col items-center mt-10">
+    <main className="flex flex-col items-center justify-center">
+      <section className="flex flex-col items-center">
         <Image
           src="/stockcentral-logo.png"
           width={150}

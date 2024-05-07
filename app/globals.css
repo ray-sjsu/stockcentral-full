@@ -7,7 +7,7 @@ html {
 }
 
 body {
-  @apply bg-slate-200;
+  @apply bg-slate-200 pt-36 pb-48 px-6;
 }
 
 hr {
@@ -24,7 +24,13 @@ button[type="submit"] {
 
 nav,
 header {
-  @apply bg-red-700 text-slate-100;
+  @apply bg-red-700 text-slate-100 w-full z-10 fixed left-0;
+}
+nav {
+  @apply bottom-0;
+}
+header {
+  @apply top-0;
 }
 
 img {
