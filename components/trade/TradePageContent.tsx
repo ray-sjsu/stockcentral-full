@@ -34,7 +34,7 @@ const TradePageContent = () => {
     };
     document.title = "Loading..."
     retrieveData();
-  }, [stockQuery]);
+  }, []);
 
   return (
     <>

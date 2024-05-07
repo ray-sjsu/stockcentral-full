@@ -6,25 +6,12 @@ type Props = {
   searchParams: { [key: string]: string | string[] | undefined };
 };
 
-export async function generateMetadata({
-  searchParams,
-}: Props): Promise<Metadata> {
-  const stock = searchParams.stock || "Trade";
-  let title = "";
-  let description = "StockCentral Trade Page";
-  if (typeof stock === "string") {
-    title = stock;
-  } else {
-    title = stock[0] || "Trade";
-  }
+export const metadata: Metadata = {
+  title: "Trade",
+  description: "StockCentral Trade Page",
+};
 
-  return {
-    title,
-    description,
-  };
-}
-
-const TradePage = async ({ searchParams }: Props) => {
+const TradePage = ({ searchParams }: Props) => {
   if (!searchParams.stock) {
     redirect("/trade?stock=AAPL");
   }
