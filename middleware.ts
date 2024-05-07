@@ -8,7 +8,7 @@ export async function middleware(request: NextRequest) {
     if (session && (pathname.startsWith('/sign-in') || pathname.startsWith('/sign-up'))) {
         return NextResponse.redirect(new URL('/profile', request.url))
     }
-    if (!session && pathname.startsWith('/profile')) {
+    if (!session && (pathname.startsWith('/profile') || pathname.startsWith('/trade'))) {
         return NextResponse.redirect(new URL('/sign-in', request.url))
     }
     return NextResponse.next()
